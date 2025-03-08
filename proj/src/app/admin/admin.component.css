@@ -1,3 +1,4 @@
+/*navigation bar*/
         /* Navbar Styling */
         .navbar {
             background: linear-gradient(135deg, #1e3c72, #2a5298);
@@ -89,3 +90,44 @@
                 transform: translateY(0);
             }
         }
+/* admin dashboard*/
+/* General Layout */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    background: #f4f6f9;
+  }
+  
+  
+  /* Main Content */
+  .main-content {
+    flex-grow: 1;
+    padding: 20px;
+  }
+    
+  /* Dashboard Stats */
+  .dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .stat-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .stat-card p {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  

@@ -11,34 +11,57 @@
 
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#">HealthCare+</a>
+            <a class="navbar-brand" href="#">HealthCare+ Admin Portal</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/doctors">Medical Professionals</a>
+                        <a class="nav-link" href="/user">User Managment</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin">Admin Controls</a>
+                        <a class="nav-link" routerLink="/Billing">Billing & Invoicing</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/frontdesk">Front Desk</a>
+                        <a class="nav-link" href="/reports">Reporting</a>
                     </li>
                 </ul>
                 <form class="d-flex me-3">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-search" type="submit">Search</button>
                 </form>
-                <a class="btn btn-login" href="/login">
+                <a class="btn btn-login" href="/logout">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-                    </svg> Login
+                    </svg> Logout
                 </a>
             </div>
         </div>
     </nav>
+   <!-- Dashboard Stats -->
+   <section class="dashboard-stats">
+    <div class="stat-card">
+      <h3>Users</h3>
+      <p>👥 125</p>
+    </div>
+    <div class="stat-card">
+      <h3>Earnings</h3>
+      <p>💰 $12,450</p>
+    </div>
+    <div class="stat-card">
+      <h3>Appointments</h3>
+      <p>📅 58</p>
+    </div>
+    <div class="stat-card">
+      <h3>Reports</h3>
+      <p>📊 15 New</p>
+    </div>
+  </section>
+
+  <!-- Router Outlet for Dynamic Pages -->
+  <router-outlet></router-outlet>
+
 
 </body>
 </html>
