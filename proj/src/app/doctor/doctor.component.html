@@ -1,12 +1,13 @@
-<div class="login-container">
-    <div class="login-box shadow-lg">
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg p-4 w-100" style="max-width: 400px;">
       <h2 class="text-center mb-4">Doctor Login</h2>
+      
       <form [formGroup]="loginForm" (ngSubmit)="login()">
         <!-- Username Field -->
-        <div class="form-group mb-3">
+        <div class="mb-3">
           <label class="form-label">Username</label>
           <div class="input-group">
-            <span class="input-group-text">
+            <span class="input-group-text bg-primary text-white">
               <i class="bi bi-person-fill"></i>
             </span>
             <input type="text" class="form-control" formControlName="username" placeholder="Enter your username">
@@ -17,10 +18,10 @@
         </div>
   
         <!-- Password Field -->
-        <div class="form-group mb-3">
+        <div class="mb-3">
           <label class="form-label">Password</label>
           <div class="input-group">
-            <span class="input-group-text">
+            <span class="input-group-text bg-primary text-white">
               <i class="bi bi-lock-fill"></i>
             </span>
             <input type="password" class="form-control" formControlName="password" placeholder="Enter your password">
@@ -31,14 +32,14 @@
         </div>
   
         <!-- Login Button -->
-        <button class="btn btn-primary w-100" type="submit" [disabled]="loginForm.invalid">
+        <button class="btn btn-success w-100" type="submit" [disabled]="loginForm.invalid">
           <i class="bi bi-box-arrow-in-right"></i> Login
         </button>
       </form>
   
       <!-- Additional Links -->
       <div class="text-center mt-3">
-        <a href="#" class="text-decoration-none">Forgot Password?</a>
+        <a href="#" class="text-decoration-none text-primary">Forgot Password?</a>
       </div>
     </div>
   </div>
