@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
+import { DoctorComponent } from './doctor/doctor.component';
+import { ReactiveFormsModule } from '@angular/forms'; 
 
 
 @NgModule({
@@ -15,11 +17,13 @@ import { UserComponent } from './user/user.component';
     HomeComponent,
     FooterComponent,
     AdminComponent,
-    UserComponent
+    UserComponent,
+    DoctorComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
