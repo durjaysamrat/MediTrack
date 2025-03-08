@@ -8,7 +8,9 @@ import { FooterComponent } from './footer/footer.component';
 import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
 import { DoctorComponent } from './doctor/doctor.component';
-import { ReactiveFormsModule } from '@angular/forms'; 
+import { ReactiveFormsModule } from '@angular/forms';
+import { BillingComponent } from './billing/billing.component';
+import { ReportComponent } from './report/report.component'; 
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     AdminComponent,
     UserComponent,
-    DoctorComponent
+    DoctorComponent,
+    BillingComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
