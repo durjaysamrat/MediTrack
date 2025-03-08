@@ -17,4 +17,7 @@ export class AppComponent {
       }
     });
   }
+  isDoctorDashboard(): boolean {
+    return this.router.url.includes('/doctor-dashboard');
+  }
 }

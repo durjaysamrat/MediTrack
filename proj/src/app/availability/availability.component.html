@@ -1,0 +1,11 @@
+<div class="card shadow-sm p-3">
+    <h4>Availability Management</h4>
+    <form [formGroup]="availabilityForm" (ngSubmit)="updateAvailability()">
+      <label>Available From:</label>
+      <input type="time" class="form-control mb-2" formControlName="availableFrom">
+      <label>Available To:</label>
+      <input type="time" class="form-control mb-2" formControlName="availableTo">
+      <button class="btn btn-success w-100" type="submit">Update Availability</button>
+    </form>
+  </div>
+  

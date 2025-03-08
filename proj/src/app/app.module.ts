@@ -10,7 +10,11 @@ import { UserComponent } from './user/user.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BillingComponent } from './billing/billing.component';
-import { ReportComponent } from './report/report.component'; 
+import { ReportComponent } from './report/report.component';
+import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component';
+import { PatientsComponent } from './patients/patients.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AvailabilityComponent } from './availability/availability.component'; 
 
 
 @NgModule({
@@ -22,12 +26,16 @@ import { ReportComponent } from './report/report.component';
     UserComponent,
     DoctorComponent,
     BillingComponent,
-    ReportComponent
+    ReportComponent,
+    DoctorDashboardComponent,
+    PatientsComponent,
+    AvailabilityComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

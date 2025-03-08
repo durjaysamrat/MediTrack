@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DoctorService {
-  private apiUrl = 'https://api.example.com'; // Replace with actual API
+  private apiUrl = 'http://localhost:8080/api/doctors'; // Replace with actual API
 
   constructor(private http: HttpClient) {}
 

@@ -1,0 +1,16 @@
+<div class="card shadow-sm p-3">
+    <h4>Patient Management</h4>
+    
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let patient of patients">
+        <strong>{{ patient.name }}</strong> - {{ patient.history }}
+        <button class="btn btn-info btn-sm float-end" (click)="viewPatient(patient)">View</button>
+      </li>
+    </ul>
+  
+    <!-- Show message if no patients available -->
+    <div *ngIf="patients.length === 0" class="alert alert-warning mt-3">
+      No patients found.
+    </div>
+  </div>
+  

@@ -22,7 +22,7 @@ export class DoctorComponent {
     
     if (username === 'doctor' && password === 'password123') {
       alert('Login Successful!');
-      this.router.navigate(['/doctor-dashboard']); // Redirect after login
+      this.router.navigate(['/doctor-dashboard']); // Navigate to dashboard
     } else {
       alert('Invalid Credentials');
     }
