@@ -1,0 +1,24 @@
+<div class="doctor-dashboard">
+    <h2>Doctor Dashboard</h2>
+  
+    <h3>Patient List</h3>
+    <ul>
+      <li *ngFor="let patient of patients" (click)="selectPatient(patient)">
+        {{ patient.name }}
+      </li>
+    </ul>
+  
+    <div *ngIf="selectedPatient">
+      <h3>Patient Details</h3>
+      <p><strong>Name:</strong> {{ selectedPatient.name }}</p>
+      <p><strong>History:</strong> {{ selectedPatient.history }}</p>
+    </div>
+  
+    <h3>Set Availability</h3>
+    <form [formGroup]="availabilityForm" (ngSubmit)="updateAvailability()">
+      <label>From: <input type="time" formControlName="availableFrom"></label>
+      <label>To: <input type="time" formControlName="availableTo"></label>
+      <button type="submit">Update</button>
+    </form>
+  </div>
+  

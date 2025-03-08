@@ -1,0 +1,83 @@
+/* General Styling */
+.doctor-dashboard {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background: #f9f9f9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  h2, h3 {
+    text-align: center;
+    color: #2c3e50;
+  }
+  
+  /* Patient List */
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  ul li {
+    padding: 10px;
+    background: #ffffff;
+    margin: 5px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #ddd;
+  }
+  
+  ul li:hover {
+    background: #3498db;
+    color: #ffffff;
+  }
+  
+  /* Patient Details */
+  .selected-patient {
+    background: #ecf0f1;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  /* Form Styling */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+  }
+  
+  button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background: #2ecc71;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  button:hover {
+    background: #27ae60;
+  }
+  
