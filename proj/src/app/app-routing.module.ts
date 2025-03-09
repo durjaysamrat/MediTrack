@@ -14,11 +14,13 @@ import { LoginComponent } from './components/login/login.component';
 import { PatientRegistrationComponent } from './components/patient-registration/patient-registration.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { MedicalRecordsComponent } from './components/medical-records/medical-records.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Home as default page
   { path: 'doctor-login', component: DoctorComponent }, // Doctor Login Route
-
+  { path: 'admin-login', component: AdminLoginComponent},
+  { path: 'login', component: LoginComponent },
   { 
     path: 'admin', 
     component: AdminComponent, 
@@ -42,7 +44,6 @@ const routes: Routes = [
     path: 'front-desk', 
     component: FrontDeskComponent,
     children: [
-      { path: 'login', component: LoginComponent },
       { path: 'patient-registration', component: PatientRegistrationComponent },
       { path: 'appointment', component: AppointmentComponent },
       { path: 'medical-records', component: MedicalRecordsComponent },

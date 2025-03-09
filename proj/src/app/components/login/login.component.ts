@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login',
@@ -7,21 +8,24 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  username: string = '';
-  password: string = '';
-  errorMessage: string = '';
-
-  constructor(private authService: AuthService, private router: Router) {}
-
-  login() {
-    this.authService.login(this.username, this.password).subscribe(
-      (success:any) => {
-        this.router.navigate(['/dashboard']); // Redirect after successful login
-      },
-      error => {
-        this.errorMessage = 'Invalid credentials. Try again.';
+  loginForm: FormGroup;
+  
+    constructor(private fb: FormBuilder, private router: Router) {
+      this.loginForm = this.fb.group({
+        username: ['', Validators.required],
+        password: ['', Validators.required]
+      });
+    }
+  
+    login() {
+      const { username, password } = this.loginForm.value;
+      
+      if (username === 'desk' && password === 'password123') {
+        alert('Login Successful!');
+        this.router.navigate(['/front-desk']); // Navigate to dashboard
+      } else {
+        alert('Invalid Credentials');
       }
-    );
-  }
+    }
 
 }

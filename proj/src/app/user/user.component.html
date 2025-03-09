@@ -1,1 +1,36 @@
-<p>users exist</p>
+<div class="container">
+    <h2 class="title">User Management</h2>
+    
+    <form (submit)="isEditing ? updateUser() : addUser()">
+      <input type="text" [(ngModel)]="newUser.name" name="name" placeholder="Name" required />
+      <input type="email" [(ngModel)]="newUser.email" name="email" placeholder="Email" required />
+      <select [(ngModel)]="newUser.role" name="role" required>
+        <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+      </select>
+      <button type="submit">{{ isEditing ? 'Modify' : 'Add' }}</button>
+    </form>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          <td>
+            <button (click)="editUser(user)">Modify</button>
+            <button (click)="deleteUser(user.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

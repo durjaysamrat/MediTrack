@@ -1,0 +1,45 @@
+/* Full-screen height with centered alignment */
+.d-flex {
+    min-height: 100vh;
+  }
+  
+  /* Background gradient */
+  body {
+    background: linear-gradient(to right, #3498db, #2ecc71);
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Form Card */
+  .card {
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Input Group Styling */
+  .input-group-text {
+    background: #3498db;
+    color: white;
+  }
+  
+  .form-control {
+    border-left: 0;
+    box-shadow: none;
+  }
+  
+  .form-control:focus {
+    border-color: #2ecc71;
+    box-shadow: 0px 0px 8px rgba(46, 204, 113, 0.5);
+  }
+  
+  /* Button Styling */
+  .btn-success {
+    background: #2ecc71;
+    border: none;
+  }
+  
+  .btn-success:hover {
+    background: #27ae60;
+  }
+  

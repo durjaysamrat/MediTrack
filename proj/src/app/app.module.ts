@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -21,6 +20,8 @@ import { AppointmentComponent } from './components/appointment/appointment.compo
 import { FormsModule } from '@angular/forms';
 import { FrontDeskComponent } from './components/front-desk/front-desk.component';
 import { MedicalRecordsComponent } from './components/medical-records/medical-records.component';
+import { BillingService } from './services/billing.service';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { MedicalRecordsComponent } from './components/medical-records/medical-re
     PatientRegistrationComponent,
     AppointmentComponent,
     FrontDeskComponent,
-    MedicalRecordsComponent
+    MedicalRecordsComponent,
+    AdminLoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,8 @@ import { MedicalRecordsComponent } from './components/medical-records/medical-re
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [BillingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
