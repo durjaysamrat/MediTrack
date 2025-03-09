@@ -1,0 +1,14 @@
+<div class="container">
+    <h2>Front Desk Login</h2>
+    <form (submit)="login()">
+      <label>Username:</label>
+      <input type="text" [(ngModel)]="username" required>
+      
+      <label>Password:</label>
+      <input type="password" [(ngModel)]="password" required>
+      
+      <button type="submit">Login</button>
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    </form>
+  </div>
+  

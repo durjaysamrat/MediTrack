@@ -14,7 +14,13 @@ import { ReportComponent } from './report/report.component';
 import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component';
 import { PatientsComponent } from './patients/patients.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AvailabilityComponent } from './availability/availability.component'; 
+import { AvailabilityComponent } from './availability/availability.component';
+import { LoginComponent } from './components/login/login.component';
+import { PatientRegistrationComponent } from './components/patient-registration/patient-registration.component';
+import { AppointmentComponent } from './components/appointment/appointment.component'; 
+import { FormsModule } from '@angular/forms';
+import { FrontDeskComponent } from './components/front-desk/front-desk.component';
+import { MedicalRecordsComponent } from './components/medical-records/medical-records.component';
 
 
 @NgModule({
@@ -29,13 +35,19 @@ import { AvailabilityComponent } from './availability/availability.component';
     ReportComponent,
     DoctorDashboardComponent,
     PatientsComponent,
-    AvailabilityComponent
+    AvailabilityComponent,
+    LoginComponent,
+    PatientRegistrationComponent,
+    AppointmentComponent,
+    FrontDeskComponent,
+    MedicalRecordsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

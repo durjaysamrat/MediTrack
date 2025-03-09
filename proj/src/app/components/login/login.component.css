@@ -1,0 +1,79 @@
+/* Center the login form */
+.container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+  
+  /* Heading Style */
+  .container h2 {
+    font-size: 26px;
+    color: #123b78;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  /* Labels */
+  .container label {
+    display: block;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  /* Input Fields */
+  .container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .container input:focus {
+    border-color: #123b78;
+    outline: none;
+    box-shadow: 0px 0px 5px rgba(18, 59, 120, 0.3);
+  }
+  
+  /* Login Button */
+  .container button {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .container button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Error Message */
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  /* Improve Mobile Responsiveness */
+  @media (max-width: 600px) {
+    .container {
+      width: 90%;
+      padding: 20px;
+    }
+  }
+  

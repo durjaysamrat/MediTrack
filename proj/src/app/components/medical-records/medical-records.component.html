@@ -1,0 +1,21 @@
+<div class="container">
+    <h2>Medical Records</h2>
+    <div class="search-box">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Search by patient name"
+        class="search-input"
+        (input)="onSearch()"
+      />
+    </div>
+    <ul id="records-list" class="records-list">
+      <li *ngFor="let record of filteredRecords" class="record-item">
+        <h3>{{ record.patientName }}</h3>
+        <p>Age: {{ record.age }}</p>
+        <p>Medical History: {{ record.medicalHistory }}</p>
+        <button class="update-btn" (click)="updateRecord(record.id)">Update Record</button>
+      </li>
+    </ul>
+  </div>
+  

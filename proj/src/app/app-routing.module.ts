@@ -9,6 +9,11 @@ import { ReportComponent } from './report/report.component';
 import { PatientsComponent } from './patients/patients.component';
 import { AvailabilityComponent } from './availability/availability.component';
 import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component';
+import { FrontDeskComponent } from './components/front-desk/front-desk.component';
+import { LoginComponent } from './components/login/login.component';
+import { PatientRegistrationComponent } from './components/patient-registration/patient-registration.component';
+import { AppointmentComponent } from './components/appointment/appointment.component';
+import { MedicalRecordsComponent } from './components/medical-records/medical-records.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Home as default page
@@ -32,6 +37,17 @@ const routes: Routes = [
       { path: 'availability', component: AvailabilityComponent }
     ] 
     
+  },
+  { 
+    path: 'front-desk', 
+    component: FrontDeskComponent,
+    children: [
+      { path: 'login', component: LoginComponent },
+      { path: 'patient-registration', component: PatientRegistrationComponent },
+      { path: 'appointment', component: AppointmentComponent },
+      { path: 'medical-records', component: MedicalRecordsComponent },
+      { path: '', redirectTo: 'login', pathMatch: 'full' } // Default to login
+    ] 
   },
 
   { path: '**', redirectTo: '' } // Handle unknown routes
