@@ -22,6 +22,8 @@ import { FrontDeskComponent } from './components/front-desk/front-desk.component
 import { MedicalRecordsComponent } from './components/medical-records/medical-records.component';
 import { BillingService } from './services/billing.service';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { SchedulesComponent } from './schedules/schedules.component';
+
 
 
 @NgModule({
@@ -30,6 +32,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     HomeComponent,
     FooterComponent,
     AdminComponent,
+    AdminLoginComponent,
     UserComponent,
     DoctorComponent,
     BillingComponent,
@@ -42,7 +45,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     AppointmentComponent,
     FrontDeskComponent,
     MedicalRecordsComponent,
-    AdminLoginComponent,
+    SchedulesComponent
   ],
   imports: [
     BrowserModule,

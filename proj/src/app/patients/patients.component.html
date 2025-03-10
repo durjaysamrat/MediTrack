@@ -1,16 +1,48 @@
-<div class="card shadow-sm p-3">
-    <h4>Patient Management</h4>
-    
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let patient of patients">
-        <strong>{{ patient.name }}</strong> - {{ patient.history }}
-        <button class="btn btn-info btn-sm float-end" (click)="viewPatient(patient)">View</button>
-      </li>
-    </ul>
-  
-    <!-- Show message if no patients available -->
-    <div *ngIf="patients.length === 0" class="alert alert-warning mt-3">
-      No patients found.
-    </div>
+<div class="container mt-4">
+  <h2>Patients List</h2>
+
+  <!-- Search Bar -->
+  <div class="mb-3">
+      <input type="text" class="form-control" placeholder="Search by name..." [(ngModel)]="searchTerm" (input)="searchPatients()">
   </div>
-  
+
+  <div class="card">
+      <div class="card-header bg-primary text-white">
+          <h5>Patients</h5>
+      </div>
+      <div class="card-body">
+          <table class="table table-striped">
+              <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Age</th>
+                      <th>Gender</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let patient of filteredPatients">
+                      <td>{{ patient.name }}</td>
+                      <td>{{ patient.age }}</td>
+                      <td>{{ patient.gender }}</td>
+                      <td>
+                          <button class="btn btn-info btn-sm" (click)="viewPatient(patient)">View</button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+
+  <!-- Selected Patient Details -->
+  <div *ngIf="selectedPatient" class="card mt-4">
+      <div class="card-header bg-success text-white">
+          <h5>Patient Details</h5>
+      </div>
+      <div class="card-body">
+          <p><strong>Name:</strong> {{ selectedPatient.name }}</p>
+          <p><strong>Age:</strong> {{ selectedPatient.age }}</p>
+          <p><strong>Gender:</strong> {{ selectedPatient.gender }}</p>
+          <p><strong>Medical History:</strong> {{ selectedPatient.history }}</p>
+          <p><strong>Contact:</strong> {{ selectedPatient.phno }}</p>
+ 
