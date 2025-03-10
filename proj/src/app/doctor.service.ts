@@ -9,6 +9,10 @@ export class DoctorService {
   private apiUrl = 'http://localhost:8081/api'; // Replace with actual API
 
   constructor(private http: HttpClient) {}
+  
+  registerPatient(patient: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, patient);
+  }
 
   getPatients(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/patients`);
