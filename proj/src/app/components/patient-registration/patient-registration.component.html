@@ -1,4 +1,4 @@
-<div class="container mt-5 mb-5">  <!-- ✅ Adds space between Navbar & Footer -->
+<div class="container mt-5 mb-5">  
   <h2 class="text-center mb-4 text-primary">Register New Patient</h2>
 
   <form (ngSubmit)="registerPatient()" #patientForm="ngForm" class="p-4 shadow-lg bg-white rounded">
@@ -14,7 +14,7 @@
 
       <div class="mb-3">
           <label class="form-label">Gender:</label>
-          <div class="d-flex gap-4">  <!-- ✅ Better spacing between gender options -->
+          <div class="d-flex gap-4">  
               <div class="form-check">
                   <input type="radio" class="form-check-input" [(ngModel)]="patient.gender" name="gender" value="Male" required>
                   <label class="form-check-label">Male</label>
