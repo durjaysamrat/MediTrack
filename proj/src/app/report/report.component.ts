@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 interface Report {
+  id: number;
   date: string;
+  patients: string;
   appointments: number;
   revenue: number;
 }

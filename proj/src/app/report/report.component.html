@@ -3,15 +3,18 @@
     <table>
       <thead>
         <tr>
+          <th>Id</th>
           <th>Date</th>
-          <th>Appointments</th>
-          <th>Revenue ($)</th>
+          <th>Report Data</th>
+          <th>Patients Name</th>
+          <th>Report Type</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let report of reports">
+          <td> {{report.id}}</td>
             <td>{{ report.date }}</td>
-          <td>{{ report.appointments }}</td>
+          <td>{{ report.patients }}</td>
           <td>{{ report.revenue }}</td>
         </tr>
       </tbody>
