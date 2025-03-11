@@ -1,46 +1,50 @@
-<div class="d-flex justify-content-center align-items-center min-vh-100">
-    <div class="card shadow-lg p-4 w-100" style="max-width: 400px;">
-      <h2 class="text-center mb-4">Doctor Login</h2>
-      
-      <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <!-- Username Field -->
-        <div class="mb-3">
-          <label class="form-label">Username</label>
-          <div class="input-group">
-            <span class="input-group-text bg-primary text-white">
-              <i class="bi bi-person-fill"></i>
-            </span>
-            <input type="text" class="form-control" formControlName="username" placeholder="Enter your username">
-          </div>
-          <small class="text-danger" *ngIf="loginForm.controls['username'].invalid && loginForm.controls['username'].touched">
-            Username is required
-          </small>
+\<div class="d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card shadow-lg p-4 w-100" style="max-width: 400px;">
+    <h2 class="text-center mb-4">Doctor Login</h2>
+    
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <!-- Email Field -->
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <div class="input-group">
+          <span class="input-group-text bg-primary text-white">
+            <i class="bi bi-person-fill"></i>
+          </span>
+          <input type="email" class="form-control" formControlName="email" placeholder="Enter your email">
         </div>
-  
-        <!-- Password Field -->
-        <div class="mb-3">
-          <label class="form-label">Password</label>
-          <div class="input-group">
-            <span class="input-group-text bg-primary text-white">
-              <i class="bi bi-lock-fill"></i>
-            </span>
-            <input type="password" class="form-control" formControlName="password" placeholder="Enter your password">
-          </div>
-          <small class="text-danger" *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched">
-            Password is required
-          </small>
-        </div>
-  
-        <!-- Login Button -->
-        <button class="btn btn-success w-100" type="submit" [disabled]="loginForm.invalid">
-          <i class="bi bi-box-arrow-in-right"></i> Login
-        </button>
-      </form>
-  
-      <!-- Additional Links -->
-      <div class="text-center mt-3">
-        <a href="#" class="text-decoration-none text-primary">Forgot Password?</a>
+        <small class="text-danger" *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched">
+          Please enter a valid email
+        </small>
       </div>
+
+      <!-- Password Field -->
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <div class="input-group">
+          <span class="input-group-text bg-primary text-white">
+            <i class="bi bi-lock-fill"></i>
+          </span>
+          <input type="password" class="form-control" formControlName="password" placeholder="Enter your password">
+        </div>
+        <small class="text-danger" *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched">
+          Password is required
+        </small>
+      </div>
+
+      <!-- Login Button -->
+      <button class="btn btn-success w-100" type="submit" [disabled]="loginForm.invalid">
+        <i class="bi bi-box-arrow-in-right"></i> Login
+      </button>
+    </form>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="text-danger text-center mt-3">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Additional Links -->
+    <div class="text-center mt-3">
+      <a href="#" class="text-decoration-none text-primary">Forgot Password?</a>
     </div>
   </div>
-  
+</div>

@@ -31,19 +31,19 @@ export class PatientsComponent implements OnInit {
     );
   }
 
-  // ✅ Search Patients in Real-time
+ 
   searchPatients(): void {
     this.filteredPatients = this.patients.filter((patient) =>
       patient.name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
 
-  // ✅ Show Patient Details in a Modal
+  
   viewPatient(patient: any): void {
     this.selectedPatient = patient;
   }
 
-  // ✅ Close the Modal
+
   closeModal(): void {
     this.selectedPatient = null;
   }
