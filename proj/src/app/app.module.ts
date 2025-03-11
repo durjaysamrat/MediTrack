@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { AdminComponent } from './admin/admin.component';
-import { UserComponent } from './user/user.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BillingComponent } from './billing/billing.component';
@@ -17,11 +16,12 @@ import { AvailabilityComponent } from './availability/availability.component';
 import { LoginComponent } from './components/login/login.component';
 import { PatientRegistrationComponent } from './components/patient-registration/patient-registration.component';
 import { AppointmentComponent } from './components/appointment/appointment.component'; 
-import { FormsModule } from '@angular/forms';
 import { FrontDeskComponent } from './components/front-desk/front-desk.component';
 import { MedicalRecordsComponent } from './components/medical-records/medical-records.component';
 import { BillingService } from './services/billing.service';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { FormsModule } from '@angular/forms';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
@@ -30,7 +30,6 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     HomeComponent,
     FooterComponent,
     AdminComponent,
-    UserComponent,
     DoctorComponent,
     BillingComponent,
     ReportComponent,
@@ -43,13 +42,14 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     FrontDeskComponent,
     MedicalRecordsComponent,
     AdminLoginComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [BillingService],
   bootstrap: [AppComponent]

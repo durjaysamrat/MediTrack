@@ -1,59 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  role: string;
-}
+import { UserComponent } from './user.component';
 
-@Component({
-  selector: 'app-user-management',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
-})
-export class UserManagementComponent implements OnInit {
-  users: User[] = [];
-  newUser: User = { id: 0, name: '', email: '', role: 'user' };
-  isEditing: boolean = false;
-  roles: string[] = ['admin', 'doctor', 'staff', 'user'];
+describe('UserComponent', () => {
+  let component: UserComponent;
+  let fixture: ComponentFixture<UserComponent>;
 
-  constructor(private http: HttpClient) {}
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ UserComponent ]
+    })
+    .compileComponents();
 
-  ngOnInit(): void {
-    this.fetchUsers();
-  }
+    fixture = TestBed.createComponent(UserComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-  fetchUsers() {
-    this.http.get<User[]>('http://localhost:3000/users').subscribe(data => {
-      this.users = data;
-    });
-  }
-
-  addUser() {
-    this.http.post('http://localhost:3000/users', this.newUser).subscribe(() => {
-      this.fetchUsers();
-      this.newUser = { id: 0, name: '', email: '', role: 'user' };
-    });
-  }
-
-  editUser(user: User) {
-    this.newUser = { ...user };
-    this.isEditing = true;
-  }
-
-  updateUser() {
-    this.http.put(`http://localhost:3000/users/${this.newUser.id}`, this.newUser).subscribe(() => {
-      this.fetchUsers();
-      this.newUser = { id: 0, name: '', email: '', role: 'user' };
-      this.isEditing = false;
-    });
-  }
-
-  deleteUser(id: number) {
-    this.http.delete(`http://localhost:3000/users/${id}`).subscribe(() => {
-      this.users = this.users.filter(user => user.id !== id);
-    });
-  }
-}
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
