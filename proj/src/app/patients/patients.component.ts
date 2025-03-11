@@ -18,20 +18,35 @@ export class PatientsComponent implements OnInit {
     this.loadPatients();
   }
 
-  loadPatients() {
-    this.doctorService.getPatients().subscribe((data) => {
-      this.patients = data;
-      this.filteredPatients = data;  // Initialize filtered list
-    });
+  // ✅ Fetch Patients from Backend API
+  loadPatients(): void {
+    this.doctorService.getPatients().subscribe(
+      (data) => {
+        this.patients = data;
+        this.filteredPatients = [...this.patients]; // Ensures deep copy
+      },
+      (error) => {
+        console.error('❌ Error fetching patients:', error);
+      }
+    );
   }
 
-  viewPatient(patient: any) {
-    this.selectedPatient = patient;
-  }
-
-  searchPatients() {
-    this.filteredPatients = this.patients.filter(patient => 
+  // ✅ Search Patients in Real-time
+  searchPatients(): void {
+    this.filteredPatients = this.patients.filter((patient) =>
       patient.name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
+
+  // ✅ Show Patient Details in a Modal
+  viewPatient(patient: any): void {
+    this.selectedPatient = patient;
+  }
+
+  // ✅ Close the Modal
+  closeModal(): void {
+    this.selectedPatient = null;
+  }
+
+  
 }

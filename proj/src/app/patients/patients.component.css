@@ -1,0 +1,48 @@
+.container {
+    max-width: 1000px;
+  }
+  
+  .card {
+    border-radius: 12px;
+    border: none;
+  }
+  
+  .card-header {
+    font-weight: bold;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  
+  .input-group-text {
+    background-color: #0d6efd;
+    color: white;
+    border-radius: 10px 0 0 10px;
+  }
+  
+  .table th {
+    text-transform: uppercase;
+  }
+  
+  .badge {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+  
+  .btn-outline-primary {
+    transition: 0.3s;
+  }
+  
+  .btn-outline-primary:hover {
+    background-color: #0d6efd;
+    color: white;
+  }
+  
+  .modal-content {
+    border-radius: 12px;
+  }
+  
+  .btn-close {
+    background: none;
+    font-size: 1.5rem;
+  }
+  
