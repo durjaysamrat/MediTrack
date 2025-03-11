@@ -1,69 +1,32 @@
-.user-management {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+.container {
+    max-width: 900px;
   }
   
-  h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
+  .card {
+    border-radius: 12px;
   }
   
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  .card-header {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
   }
   
-  input, select {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+  .btn-primary {
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  .table th {
+    text-transform: uppercase;
+  }
+  
+  .badge {
     font-size: 14px;
-  }
-  
-  button {
-    padding: 10px;
-    background: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  button:hover {
-    background: #0056b3;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  th, td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-  }
-  
-  th {
-    background: #007bff;
-    color: white;
-  }
-  
-  td button {
-    background: #dc3545;
-    padding: 5px 10px;
-    font-size: 14px;
-  }
-  
-  td button:hover {
-    background: #a71d2a;
+    padding: 6px 12px;
   }
   
