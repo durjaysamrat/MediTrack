@@ -7,7 +7,10 @@ import { DoctorService } from '../doctor.service';
   styleUrls: ['./patients.component.css']
 })
 export class PatientsComponent implements OnInit {
-  patients: any[] = []; // Store retrieved patients
+  patients: any[] = [];  
+  filteredPatients: any[] = [];  // Stores filtered results
+  selectedPatient: any = null;  
+  searchTerm: string = '';  
 
   constructor(private doctorService: DoctorService) {}
 
@@ -15,20 +18,20 @@ export class PatientsComponent implements OnInit {
     this.loadPatients();
   }
 
-  
   loadPatients() {
-    this.doctorService.getPatients().subscribe(
-      (data) => {
-        this.patients = data;
-      },
-      (error) => {
-        console.error('Error fetching patients:', error);
-      }
-    );
+    this.doctorService.getPatients().subscribe((data) => {
+      this.patients = data;
+      this.filteredPatients = data;  // Initialize filtered list
+    });
   }
 
-
   viewPatient(patient: any) {
-    alert(`Patient: ${patient.name}\nHistory: ${patient.history}`);
+    this.selectedPatient = patient;
+  }
+
+  searchPatients() {
+    this.filteredPatients = this.patients.filter(patient => 
+      patient.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 }

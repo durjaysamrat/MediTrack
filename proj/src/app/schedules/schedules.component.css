@@ -1,0 +1,61 @@
+/* General container styling */
+.container {
+    max-width: 900px;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styles */
+h2 {
+    color: #007bff;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Table styles */
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.table th {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+}
+
+.table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Alternating row colors */
+.table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Hover effect */
+.table tbody tr:hover {
+    background-color: #dfefff;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+    .table {
+        font-size: 14px;
+    }
+}
+
+/* Empty schedule message */
+.empty-message {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #dc3545;
+    margin-top: 20px;
+}

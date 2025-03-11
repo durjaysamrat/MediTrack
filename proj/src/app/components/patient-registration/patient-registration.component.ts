@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PatientService } from '../../services/patient.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-patient-registration',
@@ -9,17 +9,20 @@ import { PatientService } from '../../services/patient.service';
 export class PatientRegistrationComponent {
   patient = {
     name: '',
-    age: '',
-    contact: '',
-    medicalHistory: ''
+    age: null,
+    phno: '',
+    history: '',
+    gender: ''  // ✅ Added gender field
   };
 
-  constructor(private patientService: PatientService) {}
+  constructor(private http: HttpClient) {}
 
   registerPatient() {
-    this.patientService.registerPatient(this.patient).subscribe(response => {
-      alert('Patient registered successfully!');
-      this.patient = { name: '', age: '', contact: '', medicalHistory: '' }; // Reset form
+    this.http.post('http://localhost:8081/api/register', this.patient).subscribe(response => {
+      alert('Patient Registered Successfully!');
+      this.patient = { name: '', age: null, phno: '', history: '', gender: '' }; // Reset form
+    }, error => {
+      console.error('Error registering patient:', error);
     });
   }
 }

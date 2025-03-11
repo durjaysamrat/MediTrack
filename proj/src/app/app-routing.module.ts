@@ -15,6 +15,8 @@ import { PatientRegistrationComponent } from './components/patient-registration/
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { MedicalRecordsComponent } from './components/medical-records/medical-records.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { SchedulesComponent } from './schedules/schedules.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Home as default page
@@ -36,7 +38,8 @@ const routes: Routes = [
     component: DoctorDashboardComponent, 
     children: [
       { path: 'patients', component: PatientsComponent },
-      { path: 'availability', component: AvailabilityComponent }
+      { path: 'availability', component: AvailabilityComponent },
+      {path: 'schedules', component:SchedulesComponent}
     ] 
     
   },

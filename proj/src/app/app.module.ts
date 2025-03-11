@@ -20,6 +20,8 @@ import { FrontDeskComponent } from './components/front-desk/front-desk.component
 import { MedicalRecordsComponent } from './components/medical-records/medical-records.component';
 import { BillingService } from './services/billing.service';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { SchedulesComponent } from './schedules/schedules.component';
+
 import { FormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
 
@@ -30,6 +32,8 @@ import { UserComponent } from './user/user.component';
     HomeComponent,
     FooterComponent,
     AdminComponent,
+    AdminLoginComponent,
+    UserComponent,
     DoctorComponent,
     BillingComponent,
     ReportComponent,
@@ -41,6 +45,7 @@ import { UserComponent } from './user/user.component';
     AppointmentComponent,
     FrontDeskComponent,
     MedicalRecordsComponent,
+    SchedulesComponent
     AdminLoginComponent,
     UserComponent,
   ],

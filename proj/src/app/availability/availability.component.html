@@ -1,11 +1,21 @@
-<div class="card shadow-sm p-3">
-    <h4>Availability Management</h4>
-    <form [formGroup]="availabilityForm" (ngSubmit)="updateAvailability()">
-      <label>Available From:</label>
-      <input type="time" class="form-control mb-2" formControlName="availableFrom">
-      <label>Available To:</label>
-      <input type="time" class="form-control mb-2" formControlName="availableTo">
-      <button class="btn btn-success w-100" type="submit">Update Availability</button>
-    </form>
+<div class="container mt-4">
+  <h2>Update Availability</h2>
+  <div class="card">
+      <div class="card-header bg-info text-white">
+          <h5>Availability Form</h5>
+      </div>
+      <div class="card-body">
+          <form [formGroup]="availabilityForm" (ngSubmit)="updateAvailability()">
+              <div class="mb-3">
+                  <label class="form-label">Available From:</label>
+                  <input type="time" class="form-control" formControlName="availableFrom">
+              </div>
+              <div class="mb-3">
+                  <label class="form-label">Available To:</label>
+                  <input type="time" class="form-control" formControlName="availableTo">
+              </div>
+              <button type="submit" class="btn btn-primary">Update Availability</button>
+          </form>
+      </div>
   </div>
-  
+</div>

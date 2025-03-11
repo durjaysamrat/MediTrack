@@ -6,15 +6,26 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DoctorService {
-  private apiUrl = 'http://localhost:8080/api/doctors'; // Replace with actual API
+  private apiUrl = 'http://localhost:8081/api'; // Replace with actual API
 
   constructor(private http: HttpClient) {}
+  
+  registerPatient(patient: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, patient);
+  }
 
   getPatients(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/patients`);
   }
 
-  updateAvailability(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/doctors/availability`, data);
+  getAvailability(doctorId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/doctors/${doctorId}/availability`);
+  }
+
+  updateAvailability(doctorId: number, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/doctors/${doctorId}/availability`, data);
+  }
+  getSchedules(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/schedules`);
   }
 }
