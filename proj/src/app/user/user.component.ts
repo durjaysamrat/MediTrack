@@ -37,7 +37,7 @@ export class UserComponent implements OnInit {
     console.log('🔹 Adding User:', this.newUser);
     
     if (this.newUser.id === 0) {
-      this.newUser.id = null;  // ✅ Fix: Ensure new users have a null ID
+      this.newUser.id = null; 
     }
 
     this.userService.addUser(this.newUser).subscribe(

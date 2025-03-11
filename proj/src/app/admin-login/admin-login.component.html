@@ -31,16 +31,17 @@
           </small>
         </div>
   
+              <!-- ✅ Show error message under the form -->
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+
         <!-- Login Button -->
         <button class="btn btn-success w-100" type="submit" [disabled]="loginForm.invalid">
           <i class="bi bi-box-arrow-in-right"></i> Login
         </button>
       </form>
   
-      <!-- Additional Links -->
-      <div class="text-center mt-3">
-        <a href="#" class="text-decoration-none text-primary">Forgot Password?</a>
-      </div>
     </div>
+
   </div>
   
