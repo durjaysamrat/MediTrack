@@ -1,48 +1,76 @@
-<div class="container mt-4">
-  <h2>Patients List</h2>
-
-  <!-- Search Bar -->
-  <div class="mb-3">
+<div class="container mt-5">
+    <h2 class="text-center text-primary mb-4"><i class="bi bi-people-fill"></i> Patients List</h2>
+  
+    <!-- Search Bar -->
+    <div class="input-group mb-4 shadow-sm">
+      <span class="input-group-text bg-primary text-white"><i class="bi bi-search"></i></span>
       <input type="text" class="form-control" placeholder="Search by name..." [(ngModel)]="searchTerm" (input)="searchPatients()">
+    </div>
+  
+    <!-- Patients Table -->
+    <div class="card shadow-lg border-0">
+      <div class="card-header bg-primary text-white text-center py-3">
+        <h5 class="mb-0"><i class="bi bi-list-ol"></i> Registered Patients</h5>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover text-center align-middle mb-0">
+          <thead class="table-dark">
+            <tr>
+              <th><i class="bi bi-person-circle"></i> Name</th>
+              <th><i class="bi bi-calendar"></i> Age</th>
+              <th><i class="bi bi-gender-ambiguous"></i> Gender</th>
+              <th><i class="bi bi-eye"></i> Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let patient of filteredPatients">
+              <td class="fw-bold">{{ patient.name }}</td>
+              <td>{{ patient.age }}</td>
+              <td>
+                <span class="badge bg-info text-dark" *ngIf="patient.gender === 'Male'"><i class="bi bi-gender-male"></i> Male</span>
+                <span class="badge bg-danger" *ngIf="patient.gender === 'Female'"><i class="bi bi-gender-female"></i> Female</span>
+                <span class="badge bg-secondary" *ngIf="patient.gender === 'Other'"><i class="bi bi-gender-ambiguous"></i> Other</span>
+              </td>
+              <td>
+                <button class="btn btn-outline-primary btn-sm" (click)="viewPatient(patient)">
+                  <i class="bi bi-eye"></i> View
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <!-- Selected Patient Details Modal -->
+    <div *ngIf="selectedPatient" class="modal fade show d-block" tabindex="-1" aria-labelledby="patientDetailsModal" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content shadow-lg border-0">
+          <div class="modal-header bg-success text-white">
+            <h5 class="modal-title"><i class="bi bi-person-lines-fill"></i> Patient Details</h5>
+            <button type="button" class="btn-close" (click)="closeModal()"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <i class="bi bi-person-circle display-1 text-primary"></i>
+              </div>
+              <div class="col-md-8">
+                <ul class="list-group">
+                  <li class="list-group-item"><strong>Name:</strong> {{ selectedPatient.name }}</li>
+                  <li class="list-group-item"><strong>Age:</strong> {{ selectedPatient.age }} years</li>
+                  <li class="list-group-item"><strong>Gender:</strong> {{ selectedPatient.gender }}</li>
+                  <li class="list-group-item"><strong>Medical History:</strong> {{ selectedPatient.history || 'No history available' }}</li>
+                  <li class="list-group-item"><strong>Contact:</strong> {{ selectedPatient.phno }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-danger" (click)="closeModal()"><i class="bi bi-x-circle"></i> Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="card">
-      <div class="card-header bg-primary text-white">
-          <h5>Patients</h5>
-      </div>
-      <div class="card-body">
-          <table class="table table-striped">
-              <thead>
-                  <tr>
-                      <th>Name</th>
-                      <th>Age</th>
-                      <th>Gender</th>
-                      <th>Action</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let patient of filteredPatients">
-                      <td>{{ patient.name }}</td>
-                      <td>{{ patient.age }}</td>
-                      <td>{{ patient.gender }}</td>
-                      <td>
-                          <button class="btn btn-info btn-sm" (click)="viewPatient(patient)">View</button>
-                      </td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
-  </div>
-
-  <!-- Selected Patient Details -->
-  <div *ngIf="selectedPatient" class="card mt-4">
-      <div class="card-header bg-success text-white">
-          <h5>Patient Details</h5>
-      </div>
-      <div class="card-body">
-          <p><strong>Name:</strong> {{ selectedPatient.name }}</p>
-          <p><strong>Age:</strong> {{ selectedPatient.age }}</p>
-          <p><strong>Gender:</strong> {{ selectedPatient.gender }}</p>
-          <p><strong>Medical History:</strong> {{ selectedPatient.history }}</p>
-          <p><strong>Contact:</strong> {{ selectedPatient.phno }}</p>
- 
+  
