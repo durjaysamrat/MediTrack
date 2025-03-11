@@ -45,7 +45,7 @@ import { UserComponent } from './user/user.component';
     AppointmentComponent,
     FrontDeskComponent,
     MedicalRecordsComponent,
-    SchedulesComponent
+    SchedulesComponent,
     AdminLoginComponent,
     UserComponent,
   ],
