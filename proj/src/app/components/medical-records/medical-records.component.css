@@ -1,65 +1,140 @@
-/* Reset default styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-  }
-  
-  .container {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .search-box {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .search-input {
-    width: 80%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .records-list {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .record-item {
-    background-color: #fafafa;
-    margin-bottom: 10px;
-    padding: 15px;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .update-btn {
-    padding: 5px 10px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .update-btn:hover {
-    background-color: #45a049;
-  }
-  
+
+/* Main Container */
+.medical-records-container {
+  width: 60%;
+  margin: 30px auto;
+  font-family: Arial, sans-serif;
+}
+
+/* Form Container */
+.form-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+textarea.form-control {
+  height: 80px;
+  resize: none;
+}
+
+/* Buttons */
+.btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #3498db;
+}
+
+.btn-primary:hover {
+  background: #2980b9;
+}
+
+.btn-success {
+  background: #27ae60;
+  margin-top: 10px;
+}
+
+.btn-success:hover {
+  background: #219150;
+}
+
+/* Search Bar */
+/* 🔹 Search Bar Styling */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.search-input {
+  width: 60%; /* Ensures enough space for the placeholder */
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 2px solid #4CAF50;
+  border-radius: 25px;
+  outline: none;
+  transition: 0.3s ease-in-out;
+  background-color: #fff;
+}
+
+.search-input::placeholder {
+  color: #666; /* Slightly darker placeholder for readability */
+  font-size: 16px;
+  opacity: 1; /* Ensures visibility */
+}
+
+.search-input:focus {
+  border-color: #2E7D32;
+  box-shadow: 0 0 10px rgba(46, 125, 50, 0.5);
+}
+
+.search-button {
+  padding: 12px 20px;
+  margin-left: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease-in-out;
+}
+
+.search-button:hover {
+  background-color: #2E7D32;
+}
+
+
+
+/* Table */
+.records-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.records-table th,
+.records-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.records-table th {
+  background: #2c3e50;
+  color: white;
+}
+
+.records-table tr:nth-child(even) {
+  background: #f9f9f9;
+}

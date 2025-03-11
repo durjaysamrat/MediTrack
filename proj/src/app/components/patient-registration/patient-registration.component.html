@@ -1,7 +1,8 @@
 <div class="container mt-5 mb-5">  
-  <h2 class="text-center mb-4 text-primary">Register New Patient</h2>
+  
 
   <form (ngSubmit)="registerPatient()" #patientForm="ngForm" class="p-4 shadow-lg bg-white rounded">
+    <h2 class="text-center mb-4 text-primary">Register New Patient</h2>
       <div class="mb-3">
           <label class="form-label">Name:</label>
           <input type="text" class="form-control" [(ngModel)]="patient.name" name="name" required>
