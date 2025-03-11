@@ -1,0 +1,31 @@
+.container {
+    max-width: 900px;
+  }
+  
+  .card {
+    border-radius: 12px;
+  }
+  
+  .card-header {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  
+  .btn-primary {
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  .table th {
+    text-transform: uppercase;
+  }
+  
+  .badge {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+  
