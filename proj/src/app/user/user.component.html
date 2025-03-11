@@ -1,39 +1,62 @@
-<div class="user-management">
-    <h2>User Management</h2>
-  
-    <form (submit)="addUser()">
-      <input type="text" [(ngModel)]="newUser.username" placeholder="Username" required />
-      <input type="text" [(ngModel)]="newUser.name" placeholder="Full Name" required />
-      <input type="email" [(ngModel)]="newUser.email" placeholder="Email" required />
-      <input type="password" [(ngModel)]="newUser.password" placeholder="Password" required />
-  
-      <select [(ngModel)]="newUser.role">
+<div class="container mt-4">
+  <h2 class="text-center">User Management</h2>
+
+  <!-- User Form -->
+  <form (ngSubmit)="addUser()" class="p-4 shadow-sm bg-white rounded">
+    <div class="mb-3">
+      <label class="form-label">Username:</label>
+      <input type="text" class="form-control" [(ngModel)]="newUser.username" name="username" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Full Name:</label>
+      <input type="text" class="form-control" [(ngModel)]="newUser.name" name="name" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Email:</label>
+      <input type="email" class="form-control" [(ngModel)]="newUser.email" name="email" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Password:</label>
+      <input type="password" class="form-control" [(ngModel)]="newUser.password" name="password" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Role:</label>
+      <select class="form-select" [(ngModel)]="newUser.role" name="role" required>
         <option value="ADMIN">Admin</option>
         <option value="DOCTOR">Doctor</option>
         <option value="USER">User</option>
       </select>
-  
-      <button type="submit">{{ isEditing ? 'Update User' : 'Add User' }}</button>
-    </form>
-  
-    <table>
-      <thead>
-        <tr>
-          <th>Username</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Role</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of users">
-          <td>{{ user.username }}</td>
-          <td>{{ user.name }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.role }}</td>
-          <td><button (click)="deleteUser(user.id)">Delete</button></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Add User</button>
+  </form>
+
+  <!-- Users List -->
+  <h3 class="mt-4">User List</h3>
+  <table class="table table-bordered mt-3">
+    <thead class="table-dark">
+      <tr>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.username }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="deleteUser(user.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
