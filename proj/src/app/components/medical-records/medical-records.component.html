@@ -1,15 +1,67 @@
-<div class="container">
-  <h2>Medical Records</h2>
-  <div class="search-box">
-      <input type="text" [(ngModel)]="searchTerm" placeholder="Search by patient name"
-          class="search-input" (input)="onSearch()" />
+
+  
+  
+<div class="medical-records-container">
+    
+  
+    <div class="form-container">
+      <form (submit)="addMedicalRecord()" >
+        <h2 class="text-center mb-4 text-primary">Medical Records Management</h2>
+  
+        <div class="form-group">
+          <label for="patientId">Patient ID:</label>
+          <input type="text" id="patientId" [(ngModel)]="newRecord.patientId" class="form-control" required />
+        </div>
+  
+        <div class="form-group">
+          <label for="patientName">Patient Name:</label>
+          <input type="text" id="patientName" [(ngModel)]="newRecord.patientName" class="form-control" required />
+        </div>
+  
+        <div class="form-group">
+          <label for="diagnosis">Diagnosis:</label>
+          <input type="text" id="diagnosis" [(ngModel)]="newRecord.diagnosis" class="form-control" />
+        </div>
+  
+        <div class="form-group">
+          <label for="treatment">Treatment:</label>
+          <input type="text" id="treatment" [(ngModel)]="newRecord.treatment" class="form-control" />
+        </div>
+  
+        <div class="form-group">
+          <label for="testResults">Test Results:</label>
+          <textarea id="testResults" [(ngModel)]="newRecord.testResults" class="form-control"></textarea>
+        </div>
+  
+        <button type="submit" class="btn btn-primary">Add Record</button>
+      </form>
+    </div>
+  
+    <div class="search-container">
+        <input type="text" [(ngModel)]="searchQuery" class="search-input" placeholder="Search by Patient ID or Name">
+        <button class="search-button">Search</button>
+    </div>
+    
+  
+    <table class="records-table">
+      <thead>
+        <tr>
+          <th>Patient ID</th>
+          <th>Name</th>
+          <th>Diagnosis</th>
+          <th>Treatment</th>
+          <th>Test Results</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of filteredRecords()">
+          <td>{{ record.patientId }}</td>
+          <td>{{ record.patientName }}</td>
+          <td>{{ record.diagnosis }}</td>
+          <td>{{ record.treatment }}</td>
+          <td>{{ record.testResults }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <ul id="records-list" class="records-list">
-      <li *ngFor="let record of filteredRecords" class="record-item">
-          <h3>{{ record.name }}</h3>  
-          <p>Age: {{ record.age }}</p>
-          <p>Medical History: {{ record.history }}</p>
-          <button class="update-btn" (click)="updateRecord(record.id)">Update Record</button>
-      </li>
-  </ul>
-</div>
+  

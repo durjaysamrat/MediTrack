@@ -42,4 +42,9 @@
   .btn-success:hover {
     background: #27ae60;
   }
-  
+  .error {
+    color:red;
+  }
+  .success{
+    color: #2ecc71;
+  }
