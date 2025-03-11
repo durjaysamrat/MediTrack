@@ -50,7 +50,7 @@ export class DoctorDashboardComponent implements OnInit {
 
   loadDashboardData() {
     setTimeout(() => {
-      this.nextAvailability = 'Monday, 10:00 AM';
+      this.nextAvailability = 'TUESDAY, 10:30 AM';
     }, 1000);  
   }
 
