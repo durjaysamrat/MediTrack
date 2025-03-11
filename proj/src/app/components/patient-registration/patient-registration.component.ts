@@ -12,7 +12,7 @@ export class PatientRegistrationComponent {
     age: null,
     phno: '',
     history: '',
-    gender: ''  // ✅ Added gender field
+    gender: ''
   };
 
   constructor(private http: HttpClient) {}
