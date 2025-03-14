@@ -16,7 +16,7 @@ import { AppointmentComponent } from './components/appointment/appointment.compo
 import { MedicalRecordsComponent } from './components/medical-records/medical-records.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { SchedulesComponent } from './schedules/schedules.component';
-
+import { AdminTbComponent } from './admin-tb/admin-tb.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Home as default page
