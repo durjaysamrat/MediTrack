@@ -1,0 +1,30 @@
+<div *ngIf="entity" class="modal fade show d-block" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content shadow-lg border-0">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title"><i class="bi bi-info-circle"></i> {{ entityType }} Details</h5>
+          <button type="button" class="btn-close" (click)="close.emit()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-4 text-center">
+              <i class="bi bi-person-circle display-1 text-primary"></i>
+            </div>
+            <div class="col-md-8">
+              <ul class="list-group">
+                <li class="list-group-item"><strong>Name:</strong> {{ entity.name }}</li>
+                <li class="list-group-item" *ngIf="entity.email"><strong>Email:</strong> {{ entity.email }}</li>
+                <li class="list-group-item" *ngIf="entity.role"><strong>Role:</strong> {{ entity.role }}</li>
+                <li class="list-group-item" *ngIf="entity.permissions"><strong>Permissions:</strong> {{ entity.permissions }}</li>
+                <li class="list-group-item" *ngIf="entity.contact"><strong>Contact:</strong> {{ entity.contact }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" (click)="close.emit()"><i class="bi bi-x-circle"></i> Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

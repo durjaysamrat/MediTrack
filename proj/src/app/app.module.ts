@@ -6,7 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { AdminComponent } from './admin/admin.component';
 import { DoctorComponent } from './doctor/doctor.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BillingComponent } from './billing/billing.component';
 import { ReportComponent } from './report/report.component';
 import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component';
@@ -21,10 +21,9 @@ import { MedicalRecordsComponent } from './components/medical-records/medical-re
 import { BillingService } from './services/billing.service';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { SchedulesComponent } from './schedules/schedules.component';
-
-import { FormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
-
+import { EntityModalComponent } from './entity-modal/entity-modal.component';
+import { AdminListComponent } from './admin-list/admin-list.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +31,8 @@ import { UserComponent } from './user/user.component';
     HomeComponent,
     FooterComponent,
     AdminComponent,
-    AdminLoginComponent,
-    UserComponent,
+    AdminLoginComponent, 
+    UserComponent,  
     DoctorComponent,
     BillingComponent,
     ReportComponent,
@@ -46,8 +45,8 @@ import { UserComponent } from './user/user.component';
     FrontDeskComponent,
     MedicalRecordsComponent,
     SchedulesComponent,
-    AdminLoginComponent,
-    UserComponent,
+    EntityModalComponent,
+    AdminListComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,4 +59,3 @@ import { UserComponent } from './user/user.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-

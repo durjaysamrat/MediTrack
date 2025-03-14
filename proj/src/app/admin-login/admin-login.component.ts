@@ -31,16 +31,8 @@ export class AdminLoginComponent {
       .subscribe(response => {
         if (response.success) {
           this.successMessage = 'Login Successful!';
-          
-          // Navigate based on role
-          if (response.role === 'ADMIN') {
             this.router.navigate(['/admin']);
-          } else if (response.role === 'DOCTOR') {
-            this.router.navigate(['/doctor']);
           } else {
-            this.router.navigate(['/user']);
-          }
-        } else {
           this.errorMessage = 'Invalid Credentials';
         }
       }, error => {
