@@ -17,9 +17,24 @@ export class AppointmentComponent {
   constructor(private appointmentService: AppointmentService) {}
 
   scheduleAppointment() {
-    this.appointmentService.schedule(this.appointment).subscribe(response => {
-      alert('Appointment scheduled successfully!');
-      this.appointment = { patientId: '', doctorId: '', date: '', time: '' }; // Reset form
-    });
+    // ✅ Prevent invalid IDs
+    if (!this.appointment.patientId || !this.appointment.doctorId) {
+      alert('Please enter a valid Patient ID and Doctor ID.');
+      return;
+    }
+
+    this.appointmentService.schedule(this.appointment).subscribe(
+      response => {
+        alert('Appointment scheduled successfully!');
+        this.resetForm();
+      },
+      error => {
+        alert('Failed to schedule appointment. ' + error.error);
+      }
+    );
+  }
+
+  resetForm() {
+    this.appointment = { patientId: '', doctorId: '', date: '', time: '' };
   }
 }

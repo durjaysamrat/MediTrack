@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DoctorService {
-  private apiUrl = 'http://localhost:8081/api'; // ✅ API base URL remains unchanged
+  private apiUrl = 'http://localhost:8081/api'; // ✅ Ensure API URL is Correct
 
   constructor(private http: HttpClient) {}
 
@@ -15,13 +15,13 @@ export class DoctorService {
   loginDoctor(email: string, password: string): Observable<any> {
     const loginData = { email, password };
     return this.http.post<any>(`${this.apiUrl}/doctors/login`, loginData)
-      .pipe(catchError(this.handleError));
+      .pipe(catchError(this.handleError)); // ✅ Error Handling
   }
 
   // ✅ Register a Patient
   registerPatient(patient: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, patient)
-      .pipe(catchError(this.handleError));
+      .pipe(catchError(this.handleError)); // ✅ Error Handling
   }
 
   // ✅ Get List of Patients
@@ -30,16 +30,17 @@ export class DoctorService {
       .pipe(catchError(this.handleError));
   }
 
-  // ✅ Get Doctor's Availability (Fixed API URL)
+  // ✅ Get Doctor's Availability (updated endpoint)
   getAvailability(doctorId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/availability/check?doctorId=${doctorId}`)
-      .pipe(catchError(this.handleError));
+    // Ensure the URL is correctly pointing to the backend
+    return this.http.get<any>(`${this.apiUrl}/availability/${doctorId}`)
+      .pipe(catchError(this.handleError)); // Handle error
   }
 
-  // ✅ Update Doctor's Availability (Fixed API URL & POST Method)
+  // ✅ Update Doctor's Availability
   updateAvailability(doctorId: number, data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/availability/${doctorId}`, data) // ✅ Fixed API path & method
-      .pipe(catchError(this.handleError));
+    return this.http.post(`${this.apiUrl}/availability/${doctorId}`, data)  // Updated URL here as well
+      .pipe(catchError(this.handleError)); // Handle error
   }
 
   // ✅ Get Schedules for Doctors

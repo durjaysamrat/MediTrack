@@ -6,11 +6,19 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AppointmentService {
-  private apiUrl = 'http://localhost:8080/api/appointments'; // Backend API
+  private baseUrl = 'http://localhost:8081/api/appointments'; // ✅ Backend API URL
 
   constructor(private http: HttpClient) {}
 
+  // ✅ Schedule a new appointment
   schedule(appointment: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/schedule`, appointment);
+    console.log("Sending appointment data:", appointment); // ✅ Debugging
+    return this.http.post(`${this.baseUrl}/book`, appointment);
   }
+
+  // ✅ Fetch all appointments for a specific doctor
+  getAppointmentsByDoctor(doctorId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/doctor/${doctorId}`);
+  }
+
 }

@@ -1,19 +1,20 @@
-<div class="container ">
-    <h2 >Schedule Appointment</h2>
-    <form (submit)="scheduleAppointment()" >
-      <label>Patient ID:</label>
-      <input type="text" [(ngModel)]="appointment.patientId" required>
-  
-      <label>Doctor ID:</label>
-      <input type="text" [(ngModel)]="appointment.doctorId" required>
-  
-      <label>Date:</label>
-      <input type="date" [(ngModel)]="appointment.date" required>
-  
-      <label>Time:</label>
-      <input type="time" [(ngModel)]="appointment.time" required>
-  
-      <button type="submit">Schedule</button>
-    </form>
-  </div>
-  
+<div class="container">
+  <h2>Schedule Appointment</h2>
+  <form (ngSubmit)="scheduleAppointment()">  <!-- ✅ Use (ngSubmit) instead of (submit) -->
+    
+    <label>Patient ID:</label>
+    <input type="text" [(ngModel)]="appointment.patientId" name="patientId" required>
+
+    <label>Doctor ID:</label>
+    <input type="text" [(ngModel)]="appointment.doctorId" name="doctorId" required>
+
+    <label>Date:</label>
+    <input type="date" [(ngModel)]="appointment.date" name="date" required>
+
+    <label>Time:</label>
+    <input type="time" [(ngModel)]="appointment.time" name="time" required>
+
+    <button type="submit">Schedule</button>
+
+  </form>
+</div>
