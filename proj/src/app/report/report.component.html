@@ -1,23 +1,47 @@
-<div class="container">
-    <h2 class="title">Clinic Reports</h2>
-    <table>
+<div class="container mt-4">
+  <h2 class="text-center text-primary">📊 Report Management</h2>
+
+  <!-- Report Form -->
+  <div class="card shadow p-3 mb-4">
+    <h5 class="text-center">{{ editingReport ? 'Edit Report' : 'Create New Report' }}</h5>
+    <form [formGroup]="reportForm" (ngSubmit)="submitReport()">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" id="title" class="form-control" formControlName="title" required />
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Content</label>
+        <textarea id="content" class="form-control" formControlName="content" rows="3" required></textarea>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-success">
+          {{ editingReport ? 'Update Report' : 'Submit Report' }}
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Reports Table -->
+  <div class="card shadow p-3">
+    <h5 class="text-center">📋 Reports List</h5>
+    <table class="table table-striped">
       <thead>
         <tr>
-          <th>Id</th>
-          <th>Date</th>
-          <th>Report Data</th>
-          <th>Patients Name</th>
-          <th>Report Type</th>
+          <th>#</th>
+          <th>Title</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let report of reports">
-          <td> {{report.id}}</td>
-            <td>{{ report.date }}</td>
-          <td>{{ report.patients }}</td>
-          <td>{{ report.revenue }}</td>
+        <tr *ngFor="let report of reports; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ report.title }}</td>
+          <td>
+            <button class="btn btn-warning btn-sm me-2" (click)="editReport(report)">✏️ Edit</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteReport(report.id)">🗑️ Delete</button>
+          </td>
         </tr>
       </tbody>
     </table>
-    <button (click)="exportReport()">Export Report</button>
   </div>
+</div>

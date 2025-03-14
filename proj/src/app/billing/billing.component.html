@@ -1,31 +1,86 @@
-<div class="container">
-    <h2>Billing & Invoicing</h2>
-  
-    <div class="form">
-      <input type="text" [(ngModel)]="newInvoice.patientName" placeholder="Patient Name" required />
-      <input type="text" [(ngModel)]="newInvoice.service" placeholder="Service Provided" required />
-      <input type="number" [(ngModel)]="newInvoice.amount" placeholder="Amount ($)" required />
-      <button (click)="generateInvoice()">Generate Invoice</button>
-    </div>
-  
-    <h3>Invoices</h3>
-    <table>
-      <tr>
-        <th>Patient</th>
-        <th>Service</th>
-        <th>Amount ($)</th>
-        <th>Status</th>
-        <th>Action</th>
-      </tr>
-      <tr *ngFor="let invoice of invoices">
-        <td>{{ invoice.patientName }}</td>
-        <td>{{ invoice.service }}</td>
-        <td>{{ invoice.amount }}</td>
-        <td>{{ invoice.status }}</td>
-        <td>
-          <button *ngIf="invoice.status === 'Pending'" (click)="markAsPaid(invoice.id)">Mark as Paid</button>
-        </td>
-      </tr>
-    </table>
+<div class="container mt-5">
+  <h2 class="text-center text-primary"><i class="bi bi-receipt"></i> Billing & Invoicing</h2>
+
+  <!-- Invoice Form -->
+  <div class="card shadow-sm p-4 mb-4">
+      <h4 class="text-primary"><i class="bi bi-file-earmark-plus"></i> Generate Invoice</h4>
+      <div class="row">
+          <div class="col-md-6">
+              <input type="text" class="form-control mb-2" placeholder="Patient Name" [(ngModel)]="newInvoice.patientName" required>
+              <input type="text" class="form-control mb-2" placeholder="Doctor Name" [(ngModel)]="newInvoice.doctorName">
+              <input type="text" class="form-control mb-2" placeholder="User ID" [(ngModel)]="newInvoice.userId">
+          </div>
+          <div class="col-md-6">
+              <input type="text" class="form-control mb-2" placeholder="Phone" [(ngModel)]="newInvoice.phone">
+              <input type="email" class="form-control mb-2" placeholder="Email" [(ngModel)]="newInvoice.email">
+              <input type="number" class="form-control mb-2" placeholder="Age" [(ngModel)]="newInvoice.age">
+          </div>
+      </div>
+      <input type="text" class="form-control mb-2" placeholder="Service Provided" [(ngModel)]="newInvoice.service" required>
+      <input type="number" class="form-control mb-2" placeholder="Amount " [(ngModel)]="newInvoice.amount" required>
+      <button class="btn btn-primary w-100" (click)="generateInvoice()"><i class="bi bi-plus-circle"></i> Generate Invoice</button>
   </div>
-  
+
+  <!-- Pending Invoices Table -->
+  <div class="card shadow-sm p-4 mb-4">
+      <h4 class="text-danger text-center"><i class="bi bi-clock-history"></i> Pending Bills</h4>
+      <div class="table-responsive">
+          <table class="table table-bordered table-hover text-center">
+              <thead class="table-danger">
+                  <tr>
+                      <th>Patient Name</th>
+                      <th>Doctor Name</th>
+                      <th>Service</th>
+                      <th>Amount </th>
+                      <th>Contact</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let invoice of pendingInvoices">
+                      <td>{{ invoice.patientName }}</td>
+                      <td>{{ invoice.doctorName }}</td>
+                      <td>{{ invoice.service }}</td>
+                      <td>${{ invoice.amount }}</td>
+                      <td>{{ invoice.phone }}</td>
+                      <td>
+                          <button class="btn btn-success btn-sm" (click)="markAsPaid(invoice.id)">
+                              <i class="bi bi-check-circle"></i> Mark as Paid
+                          </button>
+                          <button class="btn btn-info btn-sm" (click)="printInvoice(invoice)">
+                              <i class="bi bi-printer"></i> Print
+                          </button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+
+  <!-- Paid Invoices Table -->
+  <div class="card shadow-sm p-4">
+      <h4 class="text-success text-center"><i class="bi bi-cash-stack"></i> Paid Bills</h4>
+      <div class="table-responsive">
+          <table class="table table-bordered table-hover text-center">
+              <thead class="table-success">
+                  <tr>
+                      <th>Patient Name</th>
+                      <th>Doctor Name</th>
+                      <th>Service</th>
+                      <th>Amount </th>
+                      <th>Contact</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let invoice of paidInvoices">
+                      <td>{{ invoice.patientName }}</td>
+                      <td>{{ invoice.doctorName }}</td>
+                      <td>{{ invoice.service }}</td>
+                      <td>${{ invoice.amount }}</td>
+                      <td>{{ invoice.phone }}</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>

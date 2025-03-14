@@ -18,12 +18,12 @@ import { PatientRegistrationComponent } from './components/patient-registration/
 import { AppointmentComponent } from './components/appointment/appointment.component'; 
 import { FrontDeskComponent } from './components/front-desk/front-desk.component';
 import { MedicalRecordsComponent } from './components/medical-records/medical-records.component';
-import { BillingService } from './services/billing.service';
+import { BillingService } from './services/BillingService';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { SchedulesComponent } from './schedules/schedules.component';
 import { UserComponent } from './user/user.component';
 import { EntityModalComponent } from './entity-modal/entity-modal.component';
-import { AdminListComponent } from './admin-list/admin-list.component';
+import { AdminTbComponent } from './admin-tb/admin-tb.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,7 @@ import { AdminListComponent } from './admin-list/admin-list.component';
     MedicalRecordsComponent,
     SchedulesComponent,
     EntityModalComponent,
-    AdminListComponent,
+    AdminTbComponent,
   ],
   imports: [
     BrowserModule,
