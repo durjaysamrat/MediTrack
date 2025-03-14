@@ -59,10 +59,11 @@
 
     <!-- Add User Button -->
     <div class="text-center mt-4">
-        <button class="btn btn-success" (click)="openAddUserModal()">
+        <button class="btn btn-success" (click)="showAddUserModal = true">
             <i class="bi bi-person-plus-fill"></i> Add New User
         </button>
     </div>
+    
 
     <!-- View User Modal -->
     <div *ngIf="showViewUserModal" class="modal-overlay">
@@ -77,22 +78,8 @@
         </div>
     </div>
 
-    <!-- Add User Modal -->
-    <div *ngIf="showAddUserModal" class="modal-overlay">
-        <div class="modal-content">
-            <h4 class="text-center">Add New User</h4>
-            <input type="text" placeholder="Username" [(ngModel)]="newUser.username" class="form-control mb-2">
-            <input type="text" placeholder="Name" [(ngModel)]="newUser.name" class="form-control mb-2">
-            <input type="email" placeholder="Email" [(ngModel)]="newUser.email" class="form-control mb-2">
-            <input type="number" placeholder="Age" [(ngModel)]="newUser.age" class="form-control mb-2">
-            <input type="text" placeholder="Contact" [(ngModel)]="newUser.contact" class="form-control mb-2">
-            <button class="btn btn-primary w-100" (click)="addUser()">Save</button>
-            <button class="btn btn-secondary w-100 mt-2" (click)="closeModal()">Cancel</button>
-        </div>
-    </div>
-
     <!-- Edit User Modal -->
-    <div *ngIf="showEditUserModal" class="modal-overlay">
+    <div *ngIf="editUser" class="modal-overlay">
         <div class="modal-content">
             <h4 class="text-center">Edit User</h4>
             <input type="text" placeholder="Username" [(ngModel)]="editUser.username" class="form-control mb-2">
@@ -102,6 +89,31 @@
             <input type="text" placeholder="Contact" [(ngModel)]="editUser.contact" class="form-control mb-2">
             <button class="btn btn-primary w-100" (click)="updateUser()">Update</button>
             <button class="btn btn-secondary w-100 mt-2" (click)="closeModal()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div *ngIf="userToDelete" class="modal-overlay">
+        <div class="modal-content text-center">
+            <h4 class="text-danger">Confirm Deletion</h4>
+            <p>Are you sure you want to delete <strong>{{ userToDelete?.username }}</strong>?</p>
+            <button class="btn btn-danger w-100" (click)="deleteUser()">Yes, Delete</button>
+            <button class="btn btn-secondary w-100 mt-2" (click)="closeModal()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Add User Modal -->
+    <div *ngIf="showAddUserModal" class="modal-overlay">
+        <div class="modal-content">
+            <h4 class="text-center">Add New User</h4>
+            <input type="text" placeholder="Username" [(ngModel)]="newUser.username" class="form-control mb-2">
+            <input type="text" placeholder="Name" [(ngModel)]="newUser.name" class="form-control mb-2">
+            <input type="password" placeholder="Password" [(ngModel)]="newUser.password" class="form-control mb-2">
+            <input type="email" placeholder="Email" [(ngModel)]="newUser.email" class="form-control mb-2">
+            <input type="number" placeholder="Age" [(ngModel)]="newUser.age" class="form-control mb-2">
+            <input type="text" placeholder="Contact" [(ngModel)]="newUser.contact" class="form-control mb-2">
+            <button class="btn btn-primary w-100" (click)="addUser()">Save</button>
+            <button class="btn btn-secondary w-100 mt-2" (click)="showAddUserModal = false">Cancel</button>
         </div>
     </div>
 </div>

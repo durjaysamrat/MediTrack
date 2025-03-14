@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 
 @Component({
-  selector: 'app-user-management',
+  selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
@@ -11,17 +12,19 @@ export class UserComponent implements OnInit {
   filteredUsers: any[] = [];
   searchTerm: string = '';
 
+  addUserForm!: FormGroup;
+  editUserForm!: FormGroup;
   newUser: any = { username: '', name: '', email: '', age: null, contact: '', password: '' };
   editUser: any = null;
   selectedUser: any = null;
-  deleteUserId: number | null = null;
+  userToDelete: any = null; // Updated to store the user object
 
+  showViewUserModal: boolean = false;
   showAddUserModal: boolean = false;
   showEditUserModal: boolean = false;
-  showViewUserModal: boolean = false;
   showDeleteUserModal: boolean = false;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.loadUsers();
@@ -35,7 +38,7 @@ export class UserComponent implements OnInit {
         this.filteredUsers = [...this.users];
       },
       (error) => {
-        console.error('❌ Error fetching users:', error);
+        console.error('Error fetching users:', error);
       }
     );
   }
@@ -49,7 +52,7 @@ export class UserComponent implements OnInit {
 
   // ✅ Open "Add User" Modal
   openAddUserModal(): void {
-    this.newUser = { username: '', name: '', email: '', age: null, contact: '', password: '' }; // Reset input fields
+    this.newUser = { username: '', name: '', email: '', age: null, contact: '', password: '' };
     this.showAddUserModal = true;
   }
 
@@ -61,8 +64,8 @@ export class UserComponent implements OnInit {
     }
 
     this.userService.addUser(this.newUser).subscribe(
-      (response) => {
-        console.log('✅ User added successfully:', response);
+      () => {
+        console.log('✅ User added successfully');
         this.loadUsers();
         this.closeModal();
       },
@@ -75,20 +78,20 @@ export class UserComponent implements OnInit {
 
   // ✅ Open "Edit User" Modal
   openEditUserModal(user: any): void {
-    this.editUser = { ...user };
+    this.editUser = { ...user }; // Clone user object
     this.showEditUserModal = true;
   }
 
-  // ✅ Update user details
+  // ✅ Update User
   updateUser(): void {
-    if (!this.editUser.username || !this.editUser.name || !this.editUser.email) {
+    if (!this.editUser || !this.editUser.username || !this.editUser.name || !this.editUser.email) {
       alert('⚠️ All fields are required!');
       return;
     }
 
     this.userService.updateUser(this.editUser).subscribe(
-      (response) => {
-        console.log('✅ User updated successfully:', response);
+      () => {
+        console.log('✅ User updated successfully');
         this.loadUsers();
         this.closeModal();
       },
@@ -105,38 +108,41 @@ export class UserComponent implements OnInit {
     this.showViewUserModal = true;
   }
 
-  // ✅ Open "Delete User Confirmation" Modal
-  openDeleteUserModal(userId: number): void {
-    this.deleteUserId = userId;
+  // ✅ Open "Delete User" Confirmation Modal
+  openDeleteUserModal(user: any): void {
+    this.userToDelete = user; // Store full user object
     this.showDeleteUserModal = true;
   }
 
-  // ✅ Delete user from system
+  // ✅ Delete user
   deleteUser(): void {
-    if (this.deleteUserId === null) return;
+    if (!this.userToDelete || !this.userToDelete.id) {
+      console.error('❌ Error: No user ID provided for deletion.');
+      alert('⚠️ Failed to delete user. No user ID found.');
+      return;
+    }
 
-    this.userService.deleteUser(this.deleteUserId).subscribe(
+    this.userService.deleteUser(this.userToDelete.id).subscribe(
       () => {
-        console.log(`✅ User with ID ${this.deleteUserId} deleted.`);
+        console.log(`✅ User with ID ${this.userToDelete.id} deleted successfully.`);
         this.loadUsers();
-        this.deleteUserId = null;
         this.closeModal();
       },
       (error) => {
         console.error('❌ Error deleting user:', error);
-        alert('⚠️ Failed to delete user.');
+        alert('⚠️ Failed to delete user. Please try again.');
       }
     );
   }
 
   // ✅ Close any open modal
   closeModal(): void {
-    this.selectedUser = null;
-    this.editUser = null;
-    this.deleteUserId = null;
+    this.showViewUserModal = false;
     this.showAddUserModal = false;
     this.showEditUserModal = false;
-    this.showViewUserModal = false;
     this.showDeleteUserModal = false;
+    this.selectedUser = null;
+    this.editUser = null;
+    this.userToDelete = null;
   }
 }
