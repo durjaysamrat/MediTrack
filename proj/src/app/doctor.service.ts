@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DoctorService {
-  private apiUrl = 'http://localhost:8081/api'; // ✅ Ensure API URL is Correct
+  private apiUrl = 'http://localhost:8081/api'; // ✅ API base URL remains unchanged
 
   constructor(private http: HttpClient) {}
 
@@ -15,13 +15,13 @@ export class DoctorService {
   loginDoctor(email: string, password: string): Observable<any> {
     const loginData = { email, password };
     return this.http.post<any>(`${this.apiUrl}/doctors/login`, loginData)
-      .pipe(catchError(this.handleError)); // ✅ Error Handling
+      .pipe(catchError(this.handleError));
   }
 
   // ✅ Register a Patient
   registerPatient(patient: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, patient)
-      .pipe(catchError(this.handleError)); // ✅ Error Handling
+      .pipe(catchError(this.handleError));
   }
 
   // ✅ Get List of Patients
@@ -30,15 +30,15 @@ export class DoctorService {
       .pipe(catchError(this.handleError));
   }
 
-  // ✅ Get Doctor's Availability
+  // ✅ Get Doctor's Availability (Fixed API URL)
   getAvailability(doctorId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/doctors/${doctorId}/availability`)
+    return this.http.get<any>(`${this.apiUrl}/availability/check?doctorId=${doctorId}`)
       .pipe(catchError(this.handleError));
   }
 
-  // ✅ Update Doctor's Availability
+  // ✅ Update Doctor's Availability (Fixed API URL & POST Method)
   updateAvailability(doctorId: number, data: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/doctors/${doctorId}/availability`, data)
+    return this.http.post(`${this.apiUrl}/availability/${doctorId}`, data) // ✅ Fixed API path & method
       .pipe(catchError(this.handleError));
   }
 

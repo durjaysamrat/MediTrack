@@ -1,49 +1,43 @@
 <div class="container mt-4">
-    <h2 class="text-center text-primary mb-4"><i class="bi bi-calendar-check"></i> Update Availability</h2>
-  
-    <!-- Show Available Dates -->
-    <div class="alert alert-info text-center">
-      <strong>Select a Date:</strong>
+  <h2 class="text-center text-primary mb-4">
+    <i class="bi bi-calendar-check"></i> Update Availability
+  </h2>
+
+  <!-- Date Display -->
+  <div class="alert alert-info text-center">
+    <strong>Today's Date:</strong> {{ selectedDate }}
+  </div>
+
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-info text-white text-center">
+      <h5><i class="bi bi-clock-history"></i> Availability Form</h5>
     </div>
-  
-    <!-- Date Selection Tabs -->
-    <ul class="nav nav-pills mb-3 justify-content-center">
-      <li class="nav-item" *ngFor="let date of nextThreeDays; let i = index">
-        <a class="nav-link" [class.active]="selectedDate === date" (click)="selectDate(date)">
-          <i class="bi bi-calendar-event"></i> {{ date }}
-        </a>
-      </li>
-    </ul>
-  
-    <div class="card shadow-sm border-0">
-      <div class="card-header bg-info text-white text-center">
-        <h5><i class="bi bi-clock-history"></i> Availability Form</h5>
-      </div>
-      <div class="card-body">
-        <form [formGroup]="availabilityForm" (ngSubmit)="updateAvailability()">
-  
-          <!-- Date Display -->
-          <div class="mb-3">
-            <label class="form-label"><i class="bi bi-calendar"></i> Selected Date:</label>
-            <input type="text" class="form-control" [value]="selectedDate" disabled>
-          </div>
-  
-          <!-- Available From Time -->
-          <div class="mb-3">
-            <label class="form-label"><i class="bi bi-clock"></i> Available From:</label>
-            <input type="time" class="form-control" formControlName="availableFrom" required>
-          </div>
-  
-          <!-- Available To Time -->
-          <div class="mb-3">
-            <label class="form-label"><i class="bi bi-clock"></i> Available To:</label>
-            <input type="time" class="form-control" formControlName="availableTo" required>
-          </div>
-  
-          <!-- Submit Button -->
-          <button type="submit" class="btn btn-success w-100"><i class="bi bi-save"></i> Update Availability</button>
-        </form>
-      </div>
+    <div class="card-body">
+      <form [formGroup]="availabilityForm" (ngSubmit)="updateAvailability()">
+        
+        <!-- Selected Date (Readonly) -->
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-calendar"></i> Selected Date:</label>
+          <input type="text" class="form-control" [value]="selectedDate" disabled>
+        </div>
+
+        <!-- Available From Time -->
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-clock"></i> Available From:</label>
+          <input type="time" class="form-control" formControlName="availableFrom" required>
+        </div>
+
+        <!-- Available To Time -->
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-clock"></i> Available To:</label>
+          <input type="time" class="form-control" formControlName="availableTo" required>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-success w-100">
+          <i class="bi bi-save"></i> Update Availability
+        </button>
+      </form>
     </div>
   </div>
-  
+</div>

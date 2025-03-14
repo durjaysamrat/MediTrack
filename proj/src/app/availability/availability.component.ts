@@ -9,8 +9,7 @@ import { DoctorService } from '../doctor.service';
 })
 export class AvailabilityComponent implements OnInit {
   availabilityForm: FormGroup;
-  nextThreeDays: string[] = [];
-  selectedDate: string = '';
+  selectedDate: string = ''; // Store only one date
   doctorId: number | null = null; // Store doctorId
 
   constructor(private fb: FormBuilder, private doctorService: DoctorService) {
@@ -21,39 +20,29 @@ export class AvailabilityComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.generateNextThreeDays();
+    this.generateTodayDate();
     this.doctorId = this.getDoctorIdFromLocalStorage(); // Get the logged-in doctor's ID
   }
 
-  // Generate Next 3 Days Including Today
-  generateNextThreeDays(): void {
+  // ✅ Generate Today's Date in YYYY-MM-DD format (correct format for API)
+  generateTodayDate(): void {
     const today = new Date();
-    this.nextThreeDays = []; // Clear existing values
-    for (let i = 0; i < 3; i++) { // Generate next 3 days, excluding today
-      let date = new Date(today);
-      date.setDate(today.getDate() + i);
-      this.nextThreeDays.push(date.toDateString()); // Format: "Mon Mar 11 2025"
-    }
-    this.selectedDate = this.nextThreeDays[0]; // Default to the first day
+    this.selectedDate = today.toISOString().split('T')[0]; // Example: "2025-03-14"
   }
 
-  // Get the logged-in doctor's ID from localStorage
+  // ✅ Get the logged-in doctor's ID from localStorage
   getDoctorIdFromLocalStorage(): number | null {
     const doctor = JSON.parse(localStorage.getItem('doctor') || '{}');
     return doctor ? doctor.id : null;
   }
 
-  // Change Selected Date
-  selectDate(date: string): void {
-    this.selectedDate = date;
-  }
-
-  // Update Availability for Selected Date
+  // ✅ Update Availability for Selected Date
   updateAvailability(): void {
     if (this.availabilityForm.valid && this.doctorId) {
       const availabilityData = {
-        availableFrom: `${this.selectedDate} ${this.availabilityForm.value.availableFrom}`,
-        availableTo: `${this.selectedDate} ${this.availabilityForm.value.availableTo}`
+        availableFrom: this.availabilityForm.value.availableFrom, // Send only "HH:mm"
+        availableTo: this.availabilityForm.value.availableTo,     // Send only "HH:mm"
+        date: this.selectedDate // Send only "YYYY-MM-DD"
       };
 
       // Pass doctorId and availability data to the service
