@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DoctorService } from '../doctor.service';
+import { AppointmentService } from '../services/appointment.service';
 
 @Component({
   selector: 'app-schedules',
@@ -7,17 +7,24 @@ import { DoctorService } from '../doctor.service';
   styleUrls: ['./schedules.component.css']
 })
 export class SchedulesComponent implements OnInit {
-  schedules: any[] = [];  // Store doctor schedules
+  appointments: any[] = []; // Store appointments
 
-  constructor(private doctorService: DoctorService) {}
+  constructor(private appointmentService: AppointmentService) {}
 
   ngOnInit(): void {
-    this.loadSchedules();
+    this.loadAppointments();
   }
 
-  loadSchedules() {
-    this.doctorService.getSchedules().subscribe((data) => {
-      this.schedules = data;
-    });
+  loadAppointments() {
+    const doctorId = 1; // Set doctor ID (or get dynamically)
+    this.appointmentService.getAppointmentsByDoctor(doctorId).subscribe(
+      (data) => {
+        console.log('Appointments:', data); // Debugging
+        this.appointments = data; // Assign response
+      },
+      (error) => {
+        console.error('Error fetching appointments:', error);
+      }
+    );
   }
 }

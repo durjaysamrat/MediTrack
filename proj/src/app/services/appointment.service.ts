@@ -17,8 +17,7 @@ export class AppointmentService {
   }
 
   // ✅ Fetch all appointments for a specific doctor
-  getAppointmentsByDoctor(doctorId: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/doctor/${doctorId}`);
+  getAppointmentsByDoctor(doctorId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/doctor/${doctorId}`);
   }
-
 }
