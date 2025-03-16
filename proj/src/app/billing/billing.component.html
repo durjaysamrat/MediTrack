@@ -1,86 +1,133 @@
 <div class="container mt-5">
-  <h2 class="text-center text-primary"><i class="bi bi-receipt"></i> Billing & Invoicing</h2>
+    <!-- Billing & Invoicing Header -->
+    <h2 class="text-center text-primary fw-bold">
+        <i class="bi bi-receipt"></i> Billing & Invoicing
+    </h2>
 
-  <!-- Invoice Form -->
-  <div class="card shadow-sm p-4 mb-4">
-      <h4 class="text-primary"><i class="bi bi-file-earmark-plus"></i> Generate Invoice</h4>
-      <div class="row">
-          <div class="col-md-6">
-              <input type="text" class="form-control mb-2" placeholder="Patient Name" [(ngModel)]="newInvoice.patientName" required>
-              <input type="text" class="form-control mb-2" placeholder="Doctor Name" [(ngModel)]="newInvoice.doctorName">
-              <input type="text" class="form-control mb-2" placeholder="User ID" [(ngModel)]="newInvoice.userId">
-          </div>
-          <div class="col-md-6">
-              <input type="text" class="form-control mb-2" placeholder="Phone" [(ngModel)]="newInvoice.phone">
-              <input type="email" class="form-control mb-2" placeholder="Email" [(ngModel)]="newInvoice.email">
-              <input type="number" class="form-control mb-2" placeholder="Age" [(ngModel)]="newInvoice.age">
-          </div>
-      </div>
-      <input type="text" class="form-control mb-2" placeholder="Service Provided" [(ngModel)]="newInvoice.service" required>
-      <input type="number" class="form-control mb-2" placeholder="Amount " [(ngModel)]="newInvoice.amount" required>
-      <button class="btn btn-primary w-100" (click)="generateInvoice()"><i class="bi bi-plus-circle"></i> Generate Invoice</button>
-  </div>
+    <!-- Invoice Form -->
+    <div class="card shadow-lg p-4 mb-4 border-0">
+        <h4 class="text-primary fw-bold">
+            <i class="bi bi-file-earmark-plus"></i> Generate Invoice
+        </h4>
+        
+        <form [formGroup]="invoiceForm" (ngSubmit)="generateInvoice()">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Patient Name" formControlName="patientName">
+                    <small class="text-danger" *ngIf="isFieldInvalid('patientName')">Patient Name is required</small>
 
-  <!-- Pending Invoices Table -->
-  <div class="card shadow-sm p-4 mb-4">
-      <h4 class="text-danger text-center"><i class="bi bi-clock-history"></i> Pending Bills</h4>
-      <div class="table-responsive">
-          <table class="table table-bordered table-hover text-center">
-              <thead class="table-danger">
-                  <tr>
-                      <th>Patient Name</th>
-                      <th>Doctor Name</th>
-                      <th>Service</th>
-                      <th>Amount </th>
-                      <th>Contact</th>
-                      <th>Action</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let invoice of pendingInvoices">
-                      <td>{{ invoice.patientName }}</td>
-                      <td>{{ invoice.doctorName }}</td>
-                      <td>{{ invoice.service }}</td>
-                      <td>${{ invoice.amount }}</td>
-                      <td>{{ invoice.phone }}</td>
-                      <td>
-                          <button class="btn btn-success btn-sm" (click)="markAsPaid(invoice.id)">
-                              <i class="bi bi-check-circle"></i> Mark as Paid
-                          </button>
-                          <button class="btn btn-info btn-sm" (click)="printInvoice(invoice)">
-                              <i class="bi bi-printer"></i> Print
-                          </button>
-                      </td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
-  </div>
+                    <input type="text" class="form-control mt-2" placeholder="Doctor Name" formControlName="doctorName">
+                    <small class="text-danger" *ngIf="isFieldInvalid('doctorName')">Doctor Name is required</small>
 
-  <!-- Paid Invoices Table -->
-  <div class="card shadow-sm p-4">
-      <h4 class="text-success text-center"><i class="bi bi-cash-stack"></i> Paid Bills</h4>
-      <div class="table-responsive">
-          <table class="table table-bordered table-hover text-center">
-              <thead class="table-success">
-                  <tr>
-                      <th>Patient Name</th>
-                      <th>Doctor Name</th>
-                      <th>Service</th>
-                      <th>Amount </th>
-                      <th>Contact</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let invoice of paidInvoices">
-                      <td>{{ invoice.patientName }}</td>
-                      <td>{{ invoice.doctorName }}</td>
-                      <td>{{ invoice.service }}</td>
-                      <td>${{ invoice.amount }}</td>
-                      <td>{{ invoice.phone }}</td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
-  </div>
+                    <input type="text" class="form-control mt-2" placeholder="User ID" formControlName="userId">
+                    <small class="text-danger" *ngIf="isFieldInvalid('userId')">User ID is required</small>
+                </div>
+
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Phone" formControlName="phone">
+                    <small class="text-danger" *ngIf="isFieldInvalid('phone')">Enter a valid 10-digit phone number</small>
+
+                    <input type="email" class="form-control mt-2" placeholder="Email" formControlName="email">
+                    <small class="text-danger" *ngIf="isFieldInvalid('email')">Enter a valid email</small>
+
+                    <input type="number" class="form-control mt-2" placeholder="Age" formControlName="age">
+                    <small class="text-danger" *ngIf="isFieldInvalid('age')">Age must be between 1 and 120</small>
+                </div>
+            </div>
+
+            <input type="text" class="form-control mt-3" placeholder="Service Provided" formControlName="service">
+            <small class="text-danger" *ngIf="isFieldInvalid('service')">Service is required</small>
+
+            <input type="number" class="form-control mt-2" placeholder="Amount" formControlName="amount">
+            <small class="text-danger" *ngIf="isFieldInvalid('amount')">Amount must be greater than 0</small>
+
+            <button class="btn btn-primary w-100 mt-3" type="submit" [disabled]="invoiceForm.invalid">
+                <i class="bi bi-plus-circle"></i> Generate Invoice
+            </button>
+        </form>
+    </div>
 </div>
+
+    <!-- Pending Invoices Table -->
+    <div class="card shadow-lg p-4 mb-4 border-0">
+        <h4 class="text-danger text-center fw-bold">
+            <i class="bi bi-clock-history"></i> Pending Invoices
+        </h4>
+        <div class="table-responsive full-screen-table">
+            <table class="table table-hover table-striped text-center">
+                <thead class="sticky-header bg-danger text-white">
+                    <tr>
+                        <th>Invoice Number</th>
+                        <th>Patient Name</th>
+                        <th>Patient Age</th>
+                        <th>Doctor Name</th>
+                        <th>Service</th>
+                        <th>Amount</th>
+                        <th>Contact</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let invoice of pendingInvoices">
+                        <td>{{invoice.id}}</td>
+                        <td>{{ invoice.patientName }}</td>
+                        <td>{{ invoice.age}}</td>
+                        <td>{{ invoice.doctorName }}</td>
+                        <td>{{ invoice.service }}</td>
+                        <td>${{ invoice.amount }}</td>
+                        <td>{{ invoice.phone }}</td>
+                        <td>
+                            <button class="btn btn-success btn-sm me-1" (click)="markAsPaid(invoice.id)">
+                                <i class="bi bi-check-circle"></i> Mark as Paid
+                            </button>
+                            <button class="btn btn-info btn-sm" (click)="printInvoice(invoice)">
+                                <i class="bi bi-printer"></i> Print
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Paid Invoices Table -->
+    <div class="card shadow-lg p-4 border-0">
+        <h4 class="text-success text-center fw-bold">
+            <i class="bi bi-cash-stack"></i> Paid Invoices
+        </h4>
+        <div class="table-responsive">
+            <table class="table table-hover table-striped text-center">
+                <thead class="bg-success text-white">
+                    <tr>
+                        <th>Invoice Number</th>
+                        <th>Patient Name</th>
+                        <th>Patient Age</th>                        
+                        <th>Doctor Name</th>
+                        <th>Service</th>
+                        <th>Amount</th>
+                        <th>Contact</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let invoice of paidInvoices">
+                        <td>{{invoice.id}}</td>
+                        <td>{{ invoice.patientName }}</td>
+                        <td>{{ invoice.age}}</td>                        
+                        <td>{{ invoice.doctorName }}</td>
+                        <td>{{ invoice.service }}</td>
+                        <td>${{ invoice.amount }}</td>
+                        <td>{{ invoice.phone }}</td>
+                        <td>
+                            <button class="btn btn-danger btn-sm me-1" (click)="markAsPending(invoice.id)">
+                                <i class="bi bi-check-circle"></i> Mark as Pending
+                            </button>
+                            <button class="btn btn-info btn-sm" (click)="printInvoice(invoice)">
+                                <i class="bi bi-printer"></i> Print 
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>

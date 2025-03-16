@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../services/user.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserService } from '../services/deskuser.service';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  selector: 'app-deskusers',
+  templateUrl: './deskusers.component.html',
+  styleUrls: ['./deskusers.component.css']
 })
-export class UserComponent implements OnInit {
+export class DeskusersComponent implements OnInit {
   users: any[] = [];
   filteredUsers: any[] = [];
   searchTerm: string = '';

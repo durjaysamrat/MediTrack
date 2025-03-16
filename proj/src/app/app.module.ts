@@ -23,7 +23,8 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { SchedulesComponent } from './schedules/schedules.component';
 import { UserComponent } from './user/user.component';
 import { EntityModalComponent } from './entity-modal/entity-modal.component';
-import { AdminTbComponent } from './admin-tb/admin-tb.component';
+import { DoctorUsersComponent } from './doctorusers/doctorusers.component';
+import { DeskusersComponent } from './deskusers/deskusers.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { AdminTbComponent } from './admin-tb/admin-tb.component';
     MedicalRecordsComponent,
     SchedulesComponent,
     EntityModalComponent,
-    AdminTbComponent,
+    DoctorUsersComponent,
+    DeskusersComponent,
   ],
   imports: [
     BrowserModule,

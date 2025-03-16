@@ -15,7 +15,7 @@ export class BillingService {
   }
 
   addInvoice(invoice: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, invoice);
+    return this.http.post<any>(`${this.apiUrl}`, invoice);
   }
 
   updateInvoiceStatus(id: number, status: string): Observable<any> {

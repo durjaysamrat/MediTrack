@@ -1,0 +1,208 @@
+<div class="container mt-5">
+    <h2 class="text-center text-primary mb-4">
+        <i class="bi bi-person-badge-fill"></i> Doctor Management
+    </h2>
+
+    <!-- Search Bar -->
+    <div class="input-group mb-4 shadow-sm">
+        <span class="input-group-text bg-primary text-white">
+            <i class="bi bi-search"></i>
+        </span>
+        <input type="text" class="form-control" placeholder="Search doctors..." [(ngModel)]="searchTerm" (input)="searchDoctors()">
+    </div>
+
+    <!-- Doctor Table -->
+    <div class="card shadow-lg border-0" *ngIf="filteredDoctors.length > 0; else noDoctors">
+        <div class="card-header bg-primary text-white text-center py-3">
+            <h5 class="mb-0"><i class="bi bi-people-fill"></i> Registered Doctors</h5>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover text-center align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Specialization</th>
+                        <th>Experience</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let doctor of filteredDoctors">
+                        <td>{{ doctor.id }}</td>
+                        <td class="fw-bold">{{ doctor.firstName }}</td>
+                        <td>{{ doctor.lastName }}</td>
+                        <td>{{ doctor.specialization }}</td>
+                        <td>{{ doctor.experience }} years</td>
+                        <td>{{ doctor.email }}</td>
+                        <td>{{ doctor.phone }}</td>
+                        <td>
+                            <button class="btn btn-outline-primary btn-sm" (click)="viewDoctor(doctor)">
+                                <i class="bi bi-eye"></i> View
+                            </button>
+                            <button class="btn btn-outline-warning btn-sm mx-2" (click)="openEditDoctorModal(doctor)">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm" (click)="openDeleteDoctorModal(doctor)">
+                                <i class="bi bi-trash"></i> Delete
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <ng-template #noDoctors>
+        <p class="text-center text-muted">No doctors found.</p>
+    </ng-template>
+
+    <!-- Add Doctor Button -->
+    <div class="text-center mt-4">
+        <button class="btn btn-success" (click)="openAddDoctorModal()">
+            <i class="bi bi-person-plus-fill"></i> Add New Doctor
+        </button>
+    </div>
+
+<!-- View User Modal -->
+<div *ngIf="showViewDoctorModal" class="modal-overlay">
+    <div class="modal-content">
+        <h4 class="text-center">User Details</h4>
+        <p><strong>ID:</strong> {{ selectedDoctor?.id }}</p>
+        <p><strong>First Name:</strong> {{ selectedDoctor?.firstName }}</p>
+        <p><strong>Last Name:</strong> {{ selectedDoctor?.lastName }}</p>
+        <p><strong>Email:</strong> {{ selectedDoctor?.email }}</p>
+        <p><strong>Experience:</strong> {{ selectedDoctor?.experience }}</p>
+        <p><strong>Specialization:</strong> {{ selectedDoctor?.specialization }}</p>
+        <p><strong>Contact:</strong> {{ selectedDoctor?.phone }}</p>
+        <button class="btn btn-secondary w-100" (click)="closeModal()">Close</button>
+    </div>
+</div>
+
+    <!-- Add Doctor Modal -->
+    <div *ngIf="showAddDoctorModal" class="modal-overlay">
+        <div class="modal-content">
+            <h4 class="text-center">Add New Doctor</h4>
+            <form [formGroup]="addDoctorForm" (ngSubmit)="addDoctor()">
+
+                <input type="text" placeholder="First Name" formControlName="firstName" class="form-control mb-2"
+                [ngClass]="{'is-invalid': addDoctorForm.get('firstName')?.invalid && addDoctorForm.get('firstName')?.touched}">
+         <div *ngIf="addDoctorForm.get('firstName')?.invalid && addDoctorForm.get('firstName')?.touched" class="text-danger">
+             First Name is required and must contain only letters.
+         </div>
+         
+         <input type="text" placeholder="Last Name" formControlName="lastName" class="form-control mb-2"
+                [ngClass]="{'is-invalid': addDoctorForm.get('lastName')?.invalid && addDoctorForm.get('lastName')?.touched}">
+         <div *ngIf="addDoctorForm.get('lastName')?.invalid && addDoctorForm.get('lastName')?.touched" class="text-danger">
+             Last Name is required and must contain only letters.
+         </div>
+         
+         <input type="text" placeholder="Specialization" formControlName="specialization" class="form-control mb-2"
+                [ngClass]="{'is-invalid': addDoctorForm.get('specialization')?.invalid && addDoctorForm.get('specialization')?.touched}">
+         <div *ngIf="addDoctorForm.get('specialization')?.invalid && addDoctorForm.get('specialization')?.touched" class="text-danger">
+             Specialization is required.
+         </div>
+         
+         <input type="number" placeholder="Experience (years)" formControlName="experience" class="form-control mb-2"
+                [ngClass]="{'is-invalid': addDoctorForm.get('experience')?.invalid && addDoctorForm.get('experience')?.touched}">
+         <div *ngIf="addDoctorForm.get('experience')?.invalid && addDoctorForm.get('experience')?.touched" class="text-danger">
+             Experience is required (1-50 years).
+         </div>
+         
+         <input type="email" placeholder="Email" formControlName="email" class="form-control mb-2"
+                [ngClass]="{'is-invalid': addDoctorForm.get('email')?.invalid && addDoctorForm.get('email')?.touched}">
+         <div *ngIf="addDoctorForm.get('email')?.invalid && addDoctorForm.get('email')?.touched" class="text-danger">
+             Enter a valid email address.
+         </div>
+         
+         <input type="text" placeholder="Phone" formControlName="phone" class="form-control mb-2"
+                [ngClass]="{'is-invalid': addDoctorForm.get('phone')?.invalid && addDoctorForm.get('phone')?.touched}">
+         <div *ngIf="addDoctorForm.get('phone')?.invalid && addDoctorForm.get('phone')?.touched" class="text-danger">
+             Phone number must be exactly 10 digits.
+         </div>         
+
+         <input type="text" placeholder="Password" formControlName="password" class="form-control mb-2"
+                [ngClass]="{'is-invalid': addDoctorForm.get('password')?.invalid && addDoctorForm.get('password')?.touched}">
+         <div *ngIf="addDoctorForm.get('password')?.invalid && addDoctorForm.get('password')?.touched" class="text-danger">
+             Password must be more than 6 digits.
+         </div>    
+
+         <button class="btn btn-primary w-100" type="submit" [disabled]="addDoctorForm.invalid">Save</button>
+         <button class="btn btn-secondary w-100 mt-2" (click)="closeModal()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <div *ngIf="showEditDoctorModal" class="modal-overlay">
+        <div class="modal-content">
+            <h4 class="text-center">Edit Doctor</h4>
+            <form [formGroup]="editDoctorForm" (ngSubmit)="updateDoctor()">
+    
+                <p>First Name</p>
+                <input type="text" placeholder="First Name" formControlName="firstName" class="form-control mb-2"
+                       [ngClass]="{'is-invalid': editDoctorForm.get('firstName')?.invalid && editDoctorForm.get('firstName')?.touched}">
+                <div *ngIf="editDoctorForm.get('firstName')?.invalid && editDoctorForm.get('firstName')?.touched" class="text-danger">
+                    First Name is required and must contain only letters.
+                </div>
+    
+                <p>Last Name</p>
+                <input type="text" placeholder="Last Name" formControlName="lastName" class="form-control mb-2"
+                       [ngClass]="{'is-invalid': editDoctorForm.get('lastName')?.invalid && editDoctorForm.get('lastName')?.touched}">
+                <div *ngIf="editDoctorForm.get('lastName')?.invalid && editDoctorForm.get('lastName')?.touched" class="text-danger">
+                    Last Name is required and must contain only letters.
+                </div>
+    
+                <p>Specialization</p>
+                <input type="text" placeholder="Specialization" formControlName="specialization" class="form-control mb-2"
+                       [ngClass]="{'is-invalid': editDoctorForm.get('specialization')?.invalid && editDoctorForm.get('specialization')?.touched}">
+                <div *ngIf="editDoctorForm.get('specialization')?.invalid && editDoctorForm.get('specialization')?.touched" class="text-danger">
+                    Specialization is required.
+                </div>
+    
+                <p>Experience (years)</p>
+                <input type="number" placeholder="Experience (years)" formControlName="experience" class="form-control mb-2"
+                       [ngClass]="{'is-invalid': editDoctorForm.get('experience')?.invalid && editDoctorForm.get('experience')?.touched}">
+                <div *ngIf="editDoctorForm.get('experience')?.invalid && editDoctorForm.get('experience')?.touched" class="text-danger">
+                    Experience is required (1-50 years).
+                </div>
+    
+                <p>Email</p>
+                <input type="email" placeholder="Email" formControlName="email" class="form-control mb-2"
+                       [ngClass]="{'is-invalid': editDoctorForm.get('email')?.invalid && editDoctorForm.get('email')?.touched}">
+                <div *ngIf="editDoctorForm.get('email')?.invalid && editDoctorForm.get('email')?.touched" class="text-danger">
+                    Enter a valid email address.
+                </div>
+    
+                <p>Phone</p>
+                <input type="text" placeholder="Phone" formControlName="phone" class="form-control mb-2"
+                       [ngClass]="{'is-invalid': editDoctorForm.get('phone')?.invalid && editDoctorForm.get('phone')?.touched}">
+                <div *ngIf="editDoctorForm.get('phone')?.invalid && editDoctorForm.get('phone')?.touched" class="text-danger">
+                    Phone number must be exactly 10 digits.
+                </div>         
+    
+                <p>Password</p>
+                <input type="password" placeholder="Password" formControlName="password" class="form-control mb-2"
+                       [ngClass]="{'is-invalid': editDoctorForm.get('password')?.invalid && editDoctorForm.get('password')?.touched}">
+                <div *ngIf="editDoctorForm.get('password')?.invalid && editDoctorForm.get('password')?.touched" class="text-danger">
+                    Password must be more than 6 characters.
+                </div>
+    
+                <button class="btn btn-primary w-100" type="submit">Update</button>
+                <button class="btn btn-secondary w-100 mt-2" (click)="closeModal()">Cancel</button>
+            </form>
+        </div>
+    </div>
+    
+    
+    <!-- Delete Confirmation Modal -->
+    <div *ngIf="showDeleteDoctorModal" class="modal-overlay">
+        <div class="modal-content text-center">
+            <h4 class="text-danger">Confirm Deletion</h4>
+            <p>Are you sure you want to delete <strong>{{ doctorToDelete?.firstName }} {{ doctorToDelete?.lastName }}</strong>?</p>
+            <button class="btn btn-danger w-100" (click)="deleteDoctor()">Yes, Delete</button>
+            <button class="btn btn-secondary w-100 mt-2" (click)="closeModal()">Cancel</button>
+        </div>
+    </div>
+</div>
