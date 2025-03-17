@@ -92,7 +92,7 @@ export class BillingComponent implements OnInit {
             <tr><th>Email</th><td>${invoice.email}</td></tr>
             <tr><th>Age</th><td>${invoice.age}</td></tr>
             <tr><th>Service Provided</th><td>${invoice.service}</td></tr>
-            <tr><th>Amount</th><td class="total-amount">$${invoice.amount}</td></tr>
+            <tr><th>Amount</th><td class="total-amount">₹${invoice.amount}</td></tr>
             <tr><th>Status</th><td class="status">${invoice.status}</td></tr>
           </table>
           <div class="footer">Thank you for choosing our service!</div>

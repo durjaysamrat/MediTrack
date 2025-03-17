@@ -39,27 +39,46 @@
             </div>
         </div>
     </nav>
-   <!-- Dashboard Stats -->
    <section class="dashboard-stats">
-    <div class="stat-card">
-      <h3>Users</h3>
-      <p>👥 125</p>
-    </div>
-    <div class="stat-card">
-      <h3>Earnings</h3>
-      <p>💰 12,450</p>
-    </div>
-    <div class="stat-card">
-      <h3>Appointments</h3>
-      <p>📅 58</p>
-    </div>
-    <div class="stat-card">
-      <h3>Reports</h3>
-      <p>📊 15 New</p>
-    </div>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+    
+                    <nav class="navbar navbar-light bg-light mb-4">
+                        <span class="navbar-brand">Welcome to Admin Dashboard</span>
+                    </nav>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card p-3 text-center">
+                                <h5>Patients</h5>
+                                <h2>1,024</h2>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card p-3 text-center">
+                                <h5>Revenue</h5>
+                                <h2>₹45,000</h2>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card p-3 text-center">
+                                <h5>Staff</h5>
+                                <h2>432</h2>
+                            </div>
+                        </div>
+                    </div>
+    </body>
+    </html>
+    
   </section>
 
-  <!-- Router Outlet for Dynamic Pages -->
   <router-outlet></router-outlet>
 
 

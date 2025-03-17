@@ -74,7 +74,7 @@
                         <td>{{ invoice.age}}</td>
                         <td>{{ invoice.doctorName }}</td>
                         <td>{{ invoice.service }}</td>
-                        <td>${{ invoice.amount }}</td>
+                        <td>₹{{ invoice.amount }}</td>
                         <td>{{ invoice.phone }}</td>
                         <td>
                             <button class="btn btn-success btn-sm me-1" (click)="markAsPaid(invoice.id)">
@@ -116,7 +116,7 @@
                         <td>{{ invoice.age}}</td>                        
                         <td>{{ invoice.doctorName }}</td>
                         <td>{{ invoice.service }}</td>
-                        <td>${{ invoice.amount }}</td>
+                        <td>₹{{ invoice.amount }}</td>
                         <td>{{ invoice.phone }}</td>
                         <td>
                             <button class="btn btn-danger btn-sm me-1" (click)="markAsPending(invoice.id)">
