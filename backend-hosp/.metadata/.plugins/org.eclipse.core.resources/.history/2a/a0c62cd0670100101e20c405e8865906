@@ -1,0 +1,36 @@
+package com.app.service;
+import com.app.repo.AdminUserRepository;
+import com.app.entity.AdminUser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
+
+//Service Layer
+@Service
+public class AdminUserService {
+    @Autowired
+    private AdminUserRepository repository;
+
+    public List<AdminUser> getAllUsers() {
+        return repository.findAll();
+    }
+
+    public AdminUser addUser(AdminUser user) {
+        return repository.save(user);
+    }
+
+    public AdminUser updateUser(Long id, AdminUser user) {
+        return repository.findById(id).map(existingUser -> {
+            user.setId(id);
+            return repository.save(user);
+        }).orElseThrow(() -> new RuntimeException("User not found with ID: " + id));
+    }
+
+    public void deleteUser(Long id) {
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("User not found with ID: " + id);
+        }
+        repository.deleteById(id);
+    }
+}

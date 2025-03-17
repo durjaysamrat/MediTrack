@@ -1,0 +1,30 @@
+package com.app.controller;
+
+import com.app.service.ReportService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/reports")
+@CrossOrigin(origins = "http://localhost:4200") // Allow Angular frontend to access API
+public class ReportController {
+
+    @Autowired
+    private ReportService reportService;
+
+    @GetMapping("/clinic-operations")
+    public ResponseEntity<?> getClinicOperationsReport() {
+        return ResponseEntity.ok(reportService.generateClinicOperationsReport());
+    }
+
+    @GetMapping("/financial-statistics")
+    public ResponseEntity<?> getFinancialStatisticsReport() {
+        return ResponseEntity.ok(reportService.generateFinancialStatisticsReport());
+    }
+
+    @GetMapping("/staff-productivity")
+    public ResponseEntity<?> getStaffProductivityReport() {
+        return ResponseEntity.ok(reportService.generateStaffProductivityReport());
+    }
+}

@@ -1,0 +1,17 @@
+package com.app.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+public class Adminlogin {
+	@Entity
+	@Table(name="adminlogin")
+	@Data
+	public class Adminlogin{
+		private String username;
+		private String name;
+		private String Password;
+		private String priviledge;
+
+}

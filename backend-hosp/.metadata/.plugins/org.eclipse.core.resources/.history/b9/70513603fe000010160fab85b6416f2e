@@ -1,0 +1,32 @@
+package com.app.repo;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.app.entity.ReportEntity;
+
+@Repository
+public interface ReportRepository extends CrudRepository<ReportEntity, Long> {
+
+    @Query("SELECT COUNT(p) FROM Patient p")
+    Long countPatients();
+
+    @Query("SELECT COUNT(a) FROM Appointment a GROUP BY a.date")
+    Long getAppointmentsPerDay();
+
+    @Query("SELECT COUNT(r), r.condition FROM Report r GROUP BY r.condition ORDER BY COUNT(r) DESC")
+    Object getCommonConditions();
+
+    @Query("SELECT SUM(b.amount) FROM Billing b")
+    Double calculateTotalRevenue();
+
+    @Query("SELECT SUM(b.amount) FROM Billing b GROUP BY b.date")
+    Double getDailyEarnings();
+
+    @Query("SELECT d.name, COUNT(a) FROM Doctor d JOIN d.appointments a GROUP BY d.name")
+    Object getPatientsPerDoctor();
+
+    @Query("SELECT AVG(a.duration) FROM Appointment a")
+    Double getAverageConsultationTime();
+}

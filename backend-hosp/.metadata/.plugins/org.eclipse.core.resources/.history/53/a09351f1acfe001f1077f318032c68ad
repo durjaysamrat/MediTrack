@@ -1,0 +1,51 @@
+package com.app.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
+import com.app.model.User;
+import com.app.repo.UserRepository;
+
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    // Fetch all users
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    // Fetch a user by ID
+    public Optional<User> getUserById(Long id) {
+        return userRepository.findById(id);
+    }
+
+    // Fetch a user by username
+    public Optional<User> getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    // Add a new user
+    public User addUser(User user) {
+        return userRepository.save(user);
+    }
+
+    // Update an existing user
+    public User updateUser(User user) {
+        if (user.getId() == null || !userRepository.existsById(user.getId())) {
+            throw new RuntimeException("User not found with ID: " + user.getId());
+        }
+        return userRepository.save(user);
+    }
+
+    // Delete a user by ID
+    public void deleteUser(Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new RuntimeException("User not found with ID: " + id);
+        }
+        userRepository.deleteById(id);
+    }
+}

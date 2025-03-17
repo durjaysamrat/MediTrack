@@ -1,0 +1,19 @@
+package com.app.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+public class doctorlogin {
+
+	@Entity
+	@Table(name="doctorlogin")
+	@Data
+	public class Doctorlogin{
+		private String username;
+		private String name;
+		private String email;
+		private String Password;
+		private String Role;
+}
+}

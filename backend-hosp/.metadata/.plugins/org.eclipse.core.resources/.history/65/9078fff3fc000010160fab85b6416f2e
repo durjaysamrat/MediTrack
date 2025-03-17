@@ -1,0 +1,20 @@
+package com.app.entity;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+@Table(name = "reports")
+public class ReportEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String patientName;
+    private String date;
+    private String reportType;
+    private String reportData;
+}
