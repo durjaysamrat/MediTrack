@@ -1,20 +1,61 @@
-<div class="container">
-  <h2>Schedule Appointment</h2>
-  <form (ngSubmit)="scheduleAppointment()">  <!-- ✅ Use (ngSubmit) instead of (submit) -->
-    
-    <label>Patient ID:</label>
-    <input type="text" [(ngModel)]="appointment.patientId" name="patientId" required>
+<div class="container mt-5 mb-5"> <!-- Added mb-5 for extra space below -->
+  <div class="card shadow-lg border-0 rounded-4 p-4 bg-white">
+    <h2 class="text-center mb-4 text-primary fw-bold">Schedule Appointment</h2>
 
-    <label>Doctor ID:</label>
-    <input type="text" [(ngModel)]="appointment.doctorId" name="doctorId" required>
+    <!-- Search Section -->
+    <div class="row g-3 mb-4">
+      <!-- Patient Search -->
+      <div class="col-md-6">
+        <label class="form-label fw-semibold">Search Patient:</label>
+        <div class="input-group">
+          <input type="text" class="form-control rounded-start" [(ngModel)]="patientSearch" (input)="searchPatients()" placeholder="Enter patient name">
+          <span class="input-group-text bg-primary text-white"><i class="bi bi-search"></i></span>
+        </div>
+        <ul class="list-group position-absolute w-100 mt-1 shadow-sm" *ngIf="filteredPatients.length">
+          <li *ngFor="let patient of filteredPatients" class="list-group-item list-group-item-action" (click)="selectPatient(patient)">
+            {{ patient.name }} (ID: {{ patient.id }})
+          </li>
+        </ul>
+      </div>
 
-    <label>Date:</label>
-    <input type="date" [(ngModel)]="appointment.date" name="date" required>
+      <!-- Doctor Search -->
+      <div class="col-md-6">
+        <label class="form-label fw-semibold">Search Doctor:</label>
+        <div class="input-group">
+          <input type="text" class="form-control rounded-start" [(ngModel)]="doctorSearch" (input)="searchDoctors()" placeholder="Enter doctor name">
+          <span class="input-group-text bg-primary text-white"><i class="bi bi-search"></i></span>
+        </div>
+        <ul class="list-group position-absolute w-100 mt-1 shadow-sm" *ngIf="filteredDoctors.length">
+          <li *ngFor="let doctor of filteredDoctors" class="list-group-item list-group-item-action" (click)="selectDoctor(doctor)">
+            {{ doctor.firstName }} {{ doctor.lastName }} (ID: {{ doctor.id }})
+          </li>
+        </ul>
+      </div>
+    </div>
 
-    <label>Time:</label>
-    <input type="time" [(ngModel)]="appointment.time" name="time" required>
+    <!-- Appointment Form -->
+    <form (ngSubmit)="scheduleAppointment()" class="p-3 rounded bg-light shadow-sm">
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Patient ID:</label>
+        <input type="text" class="form-control rounded-pill" [(ngModel)]="appointment.patientId" name="patientId" readonly>
+      </div>
 
-    <button type="submit">Schedule</button>
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Doctor ID:</label>
+        <input type="text" class="form-control rounded-pill" [(ngModel)]="appointment.doctorId" name="doctorId" readonly>
+      </div>
 
-  </form>
-</div>
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Date:</label>
+        <input type="date" class="form-control rounded-pill" [(ngModel)]="appointment.date" name="date" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Time:</label>
+        <input type="time" class="form-control rounded-pill" [(ngModel)]="appointment.time" name="time" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 py-2 rounded-pill fw-bold shadow">Schedule Appointment</button>
+    </form>
+  </div>
+</div> <!-- Extra margin-bottom added to the entire container -->

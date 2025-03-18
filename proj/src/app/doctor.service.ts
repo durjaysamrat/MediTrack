@@ -54,4 +54,14 @@ export class DoctorService {
     console.error('❌ API Error:', error);
     return throwError(() => new Error(`Something went wrong: ${error.message}`));
   }
+
+
+  searchPatients(search: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/search?search=${search}`);
+  }
+
+  searchDoctors(search: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/doctors/search?search=${search}`);
+  }
+
 }

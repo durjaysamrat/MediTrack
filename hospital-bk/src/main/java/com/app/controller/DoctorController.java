@@ -1,17 +1,16 @@
 package com.app.controller;
 
 import com.app.model.Doctor;
-import com.app.model.DoctorAvailability;
+import com.app.repo.DoctorRepository;  // ✅ Import DoctorRepository
 import com.app.service.DoctorAvailabilityService;
 import com.app.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -27,6 +26,9 @@ public class DoctorController {
 
     @Autowired
     private DoctorService doctorService;
+
+    @Autowired  // ✅ Fix: Inject DoctorRepository
+    private DoctorRepository doctorRepository;
 
     // ✅ Login API (Fixed)
     @PostMapping("/login")
@@ -56,4 +58,11 @@ public class DoctorController {
             "doctor", doctor
         ));
     }
+    
+    // ✅ Fix: Doctor search API
+    @GetMapping("/search")
+    public List<Doctor> searchDoctors(@RequestParam String search) {
+        return doctorRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(search);
+    }
+
 }
