@@ -18,6 +18,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { SchedulesComponent } from './schedules/schedules.component';
 import { DoctorUsersComponent } from './doctorusers/doctorusers.component';
 import { DeskusersComponent } from './deskusers/deskusers.component';
+import { DoctorHomeComponent } from './doctor-home/doctor-home.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Home as default page
@@ -40,9 +41,11 @@ const routes: Routes = [
     path: 'doctor-dashboard', 
     component: DoctorDashboardComponent, 
     children: [
+      { path: 'doctorhome', component: DoctorHomeComponent },
       { path: 'patients', component: PatientsComponent },
       { path: 'availability', component: AvailabilityComponent },
-      {path: 'schedules', component:SchedulesComponent}
+      {path: 'schedules', component:SchedulesComponent},
+      { path: '', redirectTo: 'doctorhome', pathMatch: 'full' }
     ] 
     
   },

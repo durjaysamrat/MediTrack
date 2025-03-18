@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>HealthCare+ doctor Portal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
@@ -19,13 +20,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/doctor-dashboard/patients">View Patients</a>
+                        <a class="nav-link" routerLink="/doctor-dashboard/doctorhome" routerLinkActive="active">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/doctor-dashboard/availability">Update Availability</a>
+                        <a class="nav-link" routerLink="/doctor-dashboard/patients" routerLinkActive="active">View Patients</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/doctor-dashboard/schedules">View schedules</a>
+                        <a class="nav-link" routerLink="/doctor-dashboard/availability" routerLinkActive="active">Update Availability</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/doctor-dashboard/schedules" routerLinkActive="active">View schedules</a>
                     </li>
                 </ul>
                 <a class="btn btn-login" href="/logout">
@@ -39,7 +43,7 @@
 
     <!-- Show this section ONLY when no child route is active -->
     <div class="container mt-4" *ngIf="!hasChildRoute">
-        <h2 class="text-center">Welcome to Your Dashboard</h2>
+        <h2 class="text-center">Welcome Dr. {{ doctorName }}</h2>
 
         <div class="row mt-4">
             <div class="col-md-6">
@@ -54,10 +58,11 @@
 
             <div class="col-md-6">
                 <div class="card text-white bg-success mb-3">
-                    <div class="card-header">Next Availability</div>
+                    <div class="card-header">Today's Date</div>
                     <div class="card-body">
-                        <h4 class="card-title">{{ nextAvailability }}</h4>
-                        <p class="card-text">Update your schedule to let patients book slots.</p>
+                        <h5 class="card-title">{{ todayAvailability }}</h5>
+                        <h6 class="card-title">{{ currentTime }}    (Update your availability, so that patients can book appointments).</h6>
+                        
                     </div>
                 </div>
             </div>
@@ -69,5 +74,58 @@
         <router-outlet></router-outlet>
     </div>
 
+    <footer class="text-light py-5">
+        <div class="container">
+            <div class="row">
+                <!-- About Section -->
+                <div class="col-md-4">
+                    <h5 class="fw-bold">About HealthCare+</h5>
+                    <p>Providing top-notch medical care and resources to ensure a healthier community. Your health, our priority.</p>
+                </div>
+    
+                <!-- Quick Links -->
+                <div class="col-md-4">
+                    <h5 class="fw-bold">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="footer-link">Home</a></li>
+                        <li><a href="#" class="footer-link">Health Library</a></li>
+                        <li><a href="#" class="footer-link">Appointments</a></li>
+                        <li><a href="#" class="footer-link">Medical Professionals</a></li>
+                        <li><a href="#" class="footer-link">Contact Us</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Contact Section -->
+                <div class="col-md-4">
+                    <h5 class="fw-bold">Contact Us</h5>
+                    <p><i class="bi bi-geo-alt"></i> Ghatkesar, Hyderabad</p>
+                    <p><i class="bi bi-telephone"></i> +91 9876543210</p>
+                    <p><i class="bi bi-envelope"></i> healthcare7@gmail.com</p>
+                    
+                    <!-- Social Media Icons -->
+                    <div class="social-icons mt-3">
+                        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Bottom Footer -->
+            <div class="text-center mt-4">
+                <p class="mb-0">&copy; 2025 HealthCare+. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
+
+
+
+
+
+
+
+

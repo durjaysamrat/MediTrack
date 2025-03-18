@@ -78,4 +78,18 @@ public class DoctorAvailabilityService {
     public int getAppointmentCount(Long doctorId, LocalDate date, LocalTime time) {
         return appointmentRepository.countByDoctorIdAndAppointmentDate(doctorId, date, time);
     }
+    
+    public DoctorAvailability getDoctorAvailabilityForDate(Long doctorId, LocalDate date) {
+        // Fetch the availability from the repository
+        Optional<DoctorAvailability> availabilityOptional = doctorAvailabilityRepository.findByDoctorIdAndDate(doctorId, date);
+
+        // If availability is found, return it, otherwise handle the case when not found
+        if (availabilityOptional.isPresent()) {
+            return availabilityOptional.get();
+        } else {
+            // You can return null, throw an exception, or log it depending on your requirement
+            logger.warn("No availability found for Doctor ID: {} on Date: {}", doctorId, date);
+            return null;  // Or you can throw an exception like `throw new AvailabilityNotFoundException()`
+        }
+    }
 }

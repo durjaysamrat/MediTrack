@@ -25,6 +25,7 @@ import { UserComponent } from './user/user.component';
 import { EntityModalComponent } from './entity-modal/entity-modal.component';
 import { DoctorUsersComponent } from './doctorusers/doctorusers.component';
 import { DeskusersComponent } from './deskusers/deskusers.component';
+import { DoctorHomeComponent } from './doctor-home/doctor-home.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { DeskusersComponent } from './deskusers/deskusers.component';
     EntityModalComponent,
     DoctorUsersComponent,
     DeskusersComponent,
+    DoctorHomeComponent,
   ],
   imports: [
     BrowserModule,

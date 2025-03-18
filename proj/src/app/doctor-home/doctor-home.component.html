@@ -1,0 +1,33 @@
+<!-- Show this section ONLY when no child route is active -->
+<div class="container mt-4" *ngIf="!hasChildRoute">
+    <h2 class="text-center">Welcome Dr. {{ doctorName }}</h2>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header">Total Patients</div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ totalPatients }}</h4>
+                    <p class="card-text">You have {{ totalPatients }} patients registered.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-header">Today's Date</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ todayAvailability }}</h5>
+                    <h6 class="card-title">{{ currentTime }}    (Update your availability, so that patients can book appointments).</h6>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Router Outlet for Dynamic Views -->
+<div class="container mt-4">
+    <router-outlet></router-outlet>
+</div>
+

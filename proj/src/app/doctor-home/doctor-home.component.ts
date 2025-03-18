@@ -3,12 +3,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { DoctorService } from '../doctor.service';
 
+
 @Component({
-  selector: 'app-doctor-dashboard',
-  templateUrl: './doctor-dashboard.component.html',
-  styleUrls: ['./doctor-dashboard.component.css']
+  selector: 'app-doctor-home',
+  templateUrl: './doctor-home.component.html',
+  styleUrls: ['./doctor-home.component.css']
 })
-export class DoctorDashboardComponent implements OnInit {
+export class DoctorHomeComponent {
 
   doctorName: string = ''; 
   todayAvailability: string = 'Loading...';
@@ -39,6 +40,7 @@ export class DoctorDashboardComponent implements OnInit {
       }
     });
   }
+
 
   ngOnInit(): void {
     this.loadPatients();  
@@ -125,3 +127,4 @@ export class DoctorDashboardComponent implements OnInit {
   }
   
 }
+
