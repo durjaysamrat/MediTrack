@@ -4,9 +4,6 @@
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-2.7+-green?logo=spring)](https://spring.io/projects/spring-boot)
 [![Angular](https://img.shields.io/badge/Angular-15+-red?logo=angular)](https://angular.io)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0+-blue?logo=mysql)](https://www.mysql.com)
-[![License](https://img.shields.io/badge/License-MIT-yellow)](https://opensource.org/licenses/MIT)
-[![Last Commit](https://img.shields.io/github/last-commit/durjaysamrat/MediTrack)](https://github.com/durjaysamrat/MediTrack/commits/main)
-
 
 ![MediTrack Banner](https://via.placeholder.com/1200x400/1a6df0/ffffff?text=MediTrack+-+Modern+Clinic+Management)
 
