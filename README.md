@@ -5,7 +5,8 @@
 [![Angular](https://img.shields.io/badge/Angular-15+-red?logo=angular)](https://angular.io)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0+-blue?logo=mysql)](https://www.mysql.com)
 
-![MediTrack Banner](https://via.placeholder.com/1200x400/1a6df0/ffffff?text=MediTrack+-+Modern+Clinic+Management)
+![MediTrack Banner](![image](https://github.com/user-attachments/assets/37bd0f96-4fee-4adc-b38a-2b46f604c3f3)
+)
 
 MediTrack is a comprehensive and user-friendly clinic management system designed to streamline healthcare
 operations. Built on modern technologies, it provides a robust solution for managing patient records, scheduling
@@ -59,9 +60,6 @@ appointments, handling billing, and generating reports—all while ensuring secu
 ---
 
 ### **System Architecture**
-
-![Mermaid
-Diagram](https://via.placeholder.com/300x150/4e73df/ffffff?text=Patient+Data+-+Appointments+-+Billing+and+Reports)
 
 - **Frontend**: Angular with RxJS, Material UI
 - **Backend**: Spring Boot with Spring Security, JWT, and MySQL
